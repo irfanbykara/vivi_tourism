@@ -71,8 +71,8 @@ def contact(request):
                 with get_connection(
                         host=settings.EMAIL_HOST,
                         port=settings.EMAIL_PORT,
-                        username='irfanbykara@gmail.com',
-                        password='vlbwqtbjqykbinjh',
+                        username=os.environ.get('USER_MAIL'),
+                        password=os.environ.get('PASSWORD'),
                         use_tls=settings.EMAIL_USE_TLS,
 
                 ) as connection:
