@@ -1,0 +1,50 @@
+
+{% load static %}
+
+
+<nav class="navbar navbar-area white-nav nav-absolute navbar-two navbar-expand-lg">
+            <div class="container custom-container-one nav-container">
+                <div class="logo-wrapper">
+                    <a href="{% url 'home' %}" class="logo">
+                        <img src="{% static 'assets/img/vivilla_logo.png' %}" alt="">
+                    </a>
+                </div>
+                <div class="responsive-mobile-menu d-lg-none">
+                    <a href="javascript:void(0)" class="click-nav-right-icon">
+                        <i class="las la-ellipsis-v"></i>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#hotel_booking_menu">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="hotel_booking_menu">
+                    <ul class="navbar-nav">
+                        <li class=" current-menu-item">
+                            <a href="{% url 'home' %}">Anasayfa</a>
+                        </li>
+                        <li><a href="{% url 'about' %}"> Hakkımızda </a></li>
+                        <li class=" current-menu-item">
+                            <a href="{% url 'villas' %}">Villalarımız</a>
+                        </li>
+                        <li class=" current-menu-item">
+                            <a href="{% url 'blog' %}">Blog</a>
+                        </li>
+                        <li><a href="{% url 'contact' %}"> İletişim </a></li>
+                    </ul>
+                </div>
+<!--                <div class="navbar-right-content show-nav-content">-->
+<!--                    <div class="single-right-content">-->
+<!--                        <div class="navbar-right-flex">-->
+<!--                            <div class="navbar-right-btn">-->
+<!--                                <a href="login.html"> Log In </a>-->
+<!--                            </div>-->
+<!--                            <div class="btn-wrapper">-->
+<!--                                <a href="signup.html" class="cmn-btn btn-bg-1 radius-10"> Sign Up </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+
+        </nav>
+

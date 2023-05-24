@@ -1,0 +1,346 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+
+    <!-- Banner area Starts -->
+    <div class="banner-area banner-area-two banner-bg">
+        <div class="banner-shapes">
+            <img src="{% static 'assets/img/banner/banner-shapes.png' %}" alt="shapes">
+            <img src="{% static 'assets/img/banner/banner-shapes2.png' %}" alt="shapes">
+        </div>
+        <div class="container">
+            <div class="banner-area-flex">
+                <div class="banner-single-content text-white">
+                    <h2 class="banner-single-content-title fw-700"> Ayrıcalıklı <span class="banner-single-content-title-shape"> Tatil </span> kiralaması <span class="banner-single-content-title-shape star-shape"> </span> </h2>
+                    <p class="banner-single-content-para mt-4"> Vivi Turizm, Fethiye'deki eviniz... </p>
+                    <div class="banner-single-content-reviews mt-5">
+                        <span class="banner-single-content-reviews-icon"> <i class="las la-star"></i> </span>
+                        <div class="banner-single-content-reviews-para">
+                            <span> 2014'ten beri</span>
+                            <span> +300 memnun misafir </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner-thumb-wrap">
+                    <div class="banner-area-thumb">
+                        <img src="{% static 'assets/img/banner/vivi_main.jpg' %}" alt="">
+                    </div>
+                    <div class="banner-thumb-shape">
+                        <img src="{% static 'assets/img/banner/img-shape1.svg' %}" alt="shapes">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner area end -->
+    <div class="location-area">
+        <div class="container">
+            <div class="booking-form">
+                <form method="POST" action="{% url 'home' %}">
+
+                            {% csrf_token %}
+
+							<div class="row no-margin">
+								<div class="col-md-9">
+									<div class="row no-margin">
+										<div class="col-md-10">
+											<div class="form-group">
+												<span class="form-label">Giriş Çıkış Tarihleri</span>
+                                                    <input type="text" name="datetimes_home" id="checkin-date"  class="form--control picker flatpickr-input" />
+											</div>
+										</div>
+										<div class="col-md-2">
+											<div class="form-group">
+												<span class="form-label">Kişi Sayısı</span>
+												<select class="form-control" id="num_people" name="num_people">
+
+													<option>1</option>
+													<option>2</option>
+													<option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                    <option>6</option>
+                                                    <option>7</option>
+
+												</select>
+												<span class="select-arrow"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-btn ">
+										<button type="submit" class="submit-btn radius-20">Müsaitlikleri Görüntüle</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+
+        </div>
+    </div>
+    <!-- Location end  -->
+    <!-- Booking Two area starts -->
+    <section class="booking-two-area pat-100 pab-50">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="section-title-booking">
+                        <div class="section-title-three">
+                            <h2 class="title"> Neden Vivi? </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="single-why-two bg-white single-why-two-border radius-10">
+                        <div class="single-why-two-flex">
+                            <div class="single-why-two-icon">
+                                <i class="las la-thumbs-up"></i>
+                            </div>
+                            <div class="single-why-two-contents">
+                                <h4 class="single-why-two-contents-title"> <a href="javascript:void(0)"> Misafirperverlik anlayışımız. </a> </h4>
+                                <p class="single-why-two-contents-para mt-2"> Sizi müşteri olarak değil misafir olarak görüyor, Türk misafirperverliğiyle sizlere ev sahipliği yapıyoruz. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="single-why-two bg-white single-why-two-border radius-10">
+                        <div class="single-why-two-flex">
+                            <div class="single-why-two-icon">
+                                <i class="las la-star"></i>
+                            </div>
+                            <div class="single-why-two-contents">
+                                <h4 class="single-why-two-contents-title"> <a href="javascript:void(0)"> Özenle seçiyoruz </a> </h4>
+                                <p class="single-why-two-contents-para mt-2"> Size sunduğumuz tüm tatil opsiyonlarını yerinde inceleyip özenle seçiyoruz. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="single-why-two bg-white single-why-two-border radius-10">
+                        <div class="single-why-two-flex">
+                            <div class="single-why-two-icon">
+                                <i class="las la-headset"></i>
+                            </div>
+                            <div class="single-why-two-contents">
+                                <h4 class="single-why-two-contents-title"> <a href="javascript:void(0)"> Ulaşılabilirlik </a> </h4>
+                                <p class="single-why-two-contents-para mt-2"> Rezervasyonunuzdan itibaren 7/24 ulaşılabilir destek sunuyoruz. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Booking Two area end -->
+    <section class="attraction-area pat-50 pab-50">
+        <div class="container">
+            <div class="section-title center-text">
+                <h2 class="title"> Yakınlardaki Turistik Yerler </h2>
+                <div class="section-title-line"> </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="global-slick-init attraction-slider nav-style-one nav-color-two slider-inner-margin" data-infinite="true" data-arrows="true" data-dots="false" data-slidesToShow="4" data-swipeToSlide="true" data-autoplay="true" data-autoplaySpeed="2500" data-prevArrow='<div class="prev-icon radius-parcent-50"><i class="las la-angle-left"></i></div>'
+                        data-nextArrow='<div class="next-icon radius-parcent-50"><i class="las la-angle-right"></i></div>' data-responsive='[{"breakpoint": 1400,"settings": {"slidesToShow": 4}},{"breakpoint": 1200,"settings": {"slidesToShow": 3}},{"breakpoint": 992,"settings": {"slidesToShow": 3}},{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576, "settings": {"slidesToShow": 1} }]'>
+                        <div class="attraction-item">
+                            <div class="single-attraction-two radius-20">
+                                <div class="single-attraction-two-thumb">
+                                    <a href="{% static 'assets/img/attraction/oludeniz.jpg' %}" class="gallery-popup"> <img src="{% static 'assets/img/attraction/oludeniz.jpg' %}" height="420" width="360" alt="Ölüdeniz"> </a>
+                                </div>
+                                <div class="single-attraction-two-contents">
+                                    <h4 class="single-attraction-two-contents-title"> <a href=""> Ölüdeniz </a> </h4>
+                                    <p class="single-attraction-two-contents-para"> 2006 senesinde dünyanın en iyi plajı seçilen Ölüdeniz sizleri bekliyor. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="attraction-item">
+                            <div class="single-attraction-two radius-20">
+                                <div class="single-attraction-two-thumb">
+                                    <a href="{% static 'assets/img/attraction/kayakoy.jpg' %}" class="gallery-popup"> <img src="{% static 'assets/img/attraction/kayakoy.jpg' %}" height ="420" width="360" alt="Kayaköy"> </a>
+                                </div>
+                                <div class="single-attraction-two-contents">
+                                    <h4 class="single-attraction-two-contents-title"> <a href=""> Kayaköy </a> </h4>
+                                    <p class="single-attraction-two-contents-para"> Fethiye'nin hayalet köyünün tarihi, aktiviteler, yeme içme ve terk edilme sebepleri keşfedilmeyi bekliyor.
+. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="attraction-item">
+                            <div class="single-attraction-two radius-20">
+                                <div class="single-attraction-two-thumb">
+                                    <a href="{% static 'assets/img/attraction/kelebekler.jpg' %}" class="gallery-popup"> <img src="{% static 'assets/img/attraction/kelebekler.jpg' %}" height ="420" width="360" alt="Kelebekler Vadisi"> </a>
+                                </div>
+                                <div class="single-attraction-two-contents">
+                                    <h4 class="single-attraction-two-contents-title"> <a href=""> Kelebekler Vadisi </a> </h4>
+                                    <p class="single-attraction-two-contents-para"> Babadağ'ın eteklerinde bulunan Kelebekler Vadisi bakir doğasıyla turistlerin ilgi odağı. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="attraction-item">
+                            <div class="single-attraction-two radius-20">
+                                <div class="single-attraction-two-thumb">
+                                    <a href="{% static 'assets/img/attraction/kaputas.jpg' %}"class="gallery-popup"> <img src="{% static 'assets/img/attraction/kaputas.jpg' %}" height ="420" width="360" alt="Kaputaş"> </a>
+                                </div>
+                                <div class="single-attraction-two-contents">
+                                    <h4 class="single-attraction-two-contents-title"> <a href=""> Kaputaş </a> </h4>
+                                    <p class="single-attraction-two-contents-para"> Antalya Kaş sınırları içerisindeki Kaputaş plajına Fethiye'den günübirlik ulaşım mümkün. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="attraction-item">
+                            <div class="single-attraction-two radius-20">
+                                <div class="single-attraction-two-thumb">
+                                    <a href="{% static 'assets/img/attraction/patara.jpg' %}" class="gallery-popup"> <img src="{% static 'assets/img/attraction/patara.jpg' %}" height ="420" width="360" alt="Patara"> </a>
+                                </div>
+                                <div class="single-attraction-two-contents">
+                                    <h4 class="single-attraction-two-contents-title"> <a href=""> Patara </a> </h4>
+                                    <p class="single-attraction-two-contents-para"> Dünyanın en iyi plajları arasında gösterilen Patara'ya günübirlik ulaşım mümkün. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Booking area end -->
+    <!-- Guest area Two starts -->
+    <!-- Guest area Two end -->
+    <!-- Booking Two area end -->
+    <section class="attraction-area pat-50 pab-50">
+        <div class="container">
+            <div class="section-title center-text">
+                <h2 class="title"> Villalarımızı Keşfedin </h2>
+                <div class="section-title-line"> </div>
+            </div>
+            <div class="row g-4 mt-4">
+                {% for villa in villas %}
+                <div class="col-xl-3 col-lg-4 col-sm-6">
+                    <div class="single-attraction-two radius-20">
+                        <div class="single-attraction-two-thumb">
+
+                            <a href="{% url 'villa_detail' villa.id %}"> <img src="{{villa.avatar.url}}" width="300" height="200" alt="img"> </a>
+                        </div>
+                        <div class="single-attraction-two-contents">
+                            <h4 class="single-attraction-two-contents-title"> <a href="{% url 'villa_detail' villa.id %}"> {{ villa.name }} </a> </h4>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- Booking area end -->
+    <!-- Question area starts -->
+    <section class="question-area pat-50 pab-50">
+        <div class="container">
+            <div class="section-title center-text">
+                <h2 class="title"> Sıkça Sorulan Sorular </h2>
+                <div class="section-title-line"> </div>
+            </div>
+            <div class="row g-4 mt-4">
+                <div class="col-xl-8 col-lg-7">
+                    <div class="faq-wrapper">
+                        <div class="faq-contents">
+                            <div class="faq-item wow fadeInLeft" data-wow-delay=".1s">
+                                <h3 class="faq-title">
+                                    Ödeme işlemleri nasıl oluyor?
+                                </h3>
+                                <div class="faq-panel">
+                                    <p class="faq-para">Reservasyon sırasında konaklama ücretinizin %30'unu ödüyorsunuz. Geri kalan ödemeyi tatil başlangıcında sizlerden alıyoruz. </p>
+                                </div>
+                            </div>
+                            <div class="faq-item active open wow fadeInLeft" data-wow-delay=".2s">
+                                <h3 class="faq-title">
+                                    Ek ödeme yapacak mıyım?
+                                </h3>
+                                <div class="faq-panel">
+                                    <p class="faq-para">Elektrik, su faturası,temizlik ücreti, havuz bakım gibi hiçbir ödemeniz olmayacak.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item wow fadeInLeft" data-wow-delay=".3s">
+                                <h3 class="faq-title">
+                                    Depozito iademi nasıl alacağım?
+                                </h3>
+                                <div class="faq-panel">
+                                    <p class="faq-para">Tatil sonunda sizi uğurlamaya gelen ekip arkadaşlarımız herhangi bir maddi zararla
+                                    karşılaşmadığı takdirde depozito iadesini size sağlayacaklar.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item wow fadeInLeft" data-wow-delay=".1s">
+                                <h3 class="faq-title">
+                                    Villalarda yemek hizmeti var mı?
+                                </h3>
+                                <div class="faq-panel">
+                                    <p class="faq-para">Yemek hizmeti verdiğimiz özel villalarımız bulunmaktadır. Rezervasyon sırasında yemek hizmeti talebinizi belirtmeniz
+                                    gerekmektedir.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item wow fadeInLeft" data-wow-delay=".1s">
+                                <h3 class="faq-title">
+                                    Minimum konaklama süreniz nedir?
+                                </h3>
+                                <div class="faq-panel">
+                                    <p class="faq-para">Villalarımızda minimum üç gece konaklama yapabilirsiniz. 5 geceden daha az konaklamalarda
+                                    ekstra temizlik ücreti alınmaktadır.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-5">
+                    <div class="faq-question faq-question-border radius-10 sticky-top">
+                        <h3 class="faq-question-title"> Cevapsız kalan sorularınız mı var?? </h3>
+                        <div class="faq-question-form custom-form mat-20">
+                            7/24
+                            <a href="tel:552-860-8484">bizi arayın!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Question area end -->
+    <!-- Blog area starts -->
+    <section class="blog-area pat-50 pab-50">
+        <div class="container">
+            <div class="section-title center-text">
+                <h2 class="title"> Blog Yazıları </h2>
+                <div class="section-title-line"> </div>
+            </div>
+
+            {% for blog in blogs %}
+
+            <div class="row gy-4 mt-4">
+                <div class="col-xxl-4 col-lg-4 col-md-6">
+                    <div class="single-blog blog-two">
+                        <div class="single-blog-thumbs">
+                            <a href="{% url 'blog_detail' blog.id %}"> <img class="lazyloads" width="471" height="220" src="{{blog.display_image.url}}" alt=""> </a>
+                            <div class="single-blog-thumbs-date">
+                                <a href="javascript:void(0)"> <span class="date">{{ blog.date|date:"d" }}  </span> <span class="month"> {{ blog.date|date:"M" }} </span> </a>
+                            </div>
+                        </div>
+                        <div class="single-blog-contents mt-3">
+                            <div class="single-blog-contents-tags mt-3">
+                            </div>
+                            <h4 class="single-blog-contents-title mt-3"> <a href="{% url 'blog_detail' blog.id %}"> {{blog.title}} </a> </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Blog area end -->
+    <!-- Brand logo area starts -->
+    <!-- Brand Logo area end -->
+
+    <!-- footer area start -->
+{% endblock %}

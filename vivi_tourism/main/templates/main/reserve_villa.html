@@ -1,0 +1,128 @@
+{% extends 'main.html' %}
+{% load static %}
+    <!-- Breadcrumb area Starts -->
+
+{% block content %}
+
+<section class="Checkout-area section-bg-2 pat-100 pab-100">
+    <div class="breadcrumb-area breadcrumb-padding">
+        <div class="container custom-container-one">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-contents">
+                        <h4 class="breadcrumb-contents-title"> Reservasyon Detayları </h4>
+                        <ul class="breadcrumb-contents-list list-style-none">
+                            <li class="breadcrumb-contents-list-item"> <a href="index.html" class="breadcrumb-contents-list-item-link"> Home </a> </li>
+                            <li class="breadcrumb-contents-list-item"> Checkout </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-xl-8 col-lg-7">
+                    <div class="checkout-wrapper">
+                        <div class="checkout-single bg-white radius-10">
+                            <h4 class="checkout-title"> Reservasyon Bilgisi </h4>
+                            <div class="checkout-contents mt-3">
+                                <div class="checkout-form custom-form">
+                                    <form method="POST" action="{% url 'reserve_villa' reservation.id %}">
+                                        {% csrf_token %}
+
+                                        <div class="input-flex-item">
+                                            <div class="single-input mt-4">
+                                                <label class="label-title"> Ad </label>
+                                                <input class="form--control" type="text" name="name" placeholder="Ad" required>
+                                            </div>
+                                            <div class="single-input mt-4">
+                                                <label class="label-title"> Soyad </label>
+                                                <input class="form--control" type="text" name="last_name" placeholder="Soyad" required>
+                                            </div>
+                                        </div>
+                                        <div class="input-flex-item">
+                                            <div class="single-input mt-4">
+                                                <label class="label-title"> Telefon Numarası </label>
+                                                <input class="form--control" type="tel" name="phone" placeholder="Telefon Numarası" required>
+                                            </div>
+                                            <div class="single-input mt-4">
+                                                <label class="label-title"> Email </label>
+                                                <input class="form--control" type="email" name="email" placeholder="Email" required>
+                                            </div>
+                                        </div>
+                                        <div class="input-flex-item">
+                                            <div class="single-input mt-4">
+                                                <label class="label-title"> Adres </label>
+                                                <input class="form--control" type="text" name="address" placeholder="Adres" required>
+                                            </div>
+                                        </div>
+                                        <div class="single-input mt-4">
+                                            <label class="label-title"> Ülke </label>
+                                        <input class="form--control" type="text" name="country" placeholder="Ülke" required>
+
+                                        </div>
+                                        <div class="input-flex-item">
+                                            <div class="single-input mt-4">
+                                                <label class="label-title"> Şehir </label>
+                                        <input class="form--control" type="text" name="city" placeholder="Şehir" required>
+                                            </div>
+                                            <div class="single-input mt-4">
+                                                <label class="label-title"> Zip Kodu </label>
+                                        <input class="form--control" type="text" name="zip" placeholder="Zip Kodu" required>
+                                            </div>
+                                        </div>
+                                         <div class="btn-wrapper mt-4">
+                                        <center><button type="submit" class="cmn-btn btn-bg-1 btn-small">Ödemeye İlerle</button></center>
+<!--                                    <a href="javascript:void(0)" class="cmn-btn btn-bg-1 btn-small"> Pay &amp; Confirm </a>-->
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-5">
+                    <div class="sticky-top">
+                        <div class="checkout-widget checkout-widget-padding widget bg-white radius-10">
+                            <div class="checkout-sidebar">
+                                <h4 class="checkout-sidebar-title"> Reservasyon Detayları </h4>
+                                <div class="checkout-sidebar-contents">
+                                    <ul class="checkout-flex-list list-style-none checkout-border-top pt-3 mt-3">
+                                        <li class="list"> <span class="regular"> Villa adı </span> <span class="strong"> {{villa.name}} </span> </li>
+
+                                        <li class="list"> <span class="regular"> Giriş Tarihi </span> <span class="strong"> {{check_in}} </span> </li>
+                                        <li class="list"> <span class="regular"> Çıkış Tarihi </span> <span class="strong">  {{check_out}} </span> </li>
+                                        <li class="list"> <span class="regular"> Oda Sayısı </span> <span class="strong"> {{villa.num_room}} </span> </li>
+                                        <li class="list"> <span class="regular"> Toplam Konaklama </span> <span class="strong"> {{days}} gün </span> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="checkout-widget checkout-widget-padding widget bg-white radius-10">
+                            <div class="checkout-sidebar">
+                                <h4 class="checkout-sidebar-title"> Ödeme </h4>
+                                <div class="checkout-sidebar-contents">
+                                    <ul class="checkout-flex-list list-style-none checkout-border-top pt-3 mt-3">
+<!--                                        <li class="list"> <span class="regular"> Toplam Fiyat </span> <span class="strong">  </span> </li>-->
+                                        <li class="list"> <span class="regular"> Reservasyon Ücreti </span> <span class="strong">  {{reservation_price}} </span> </li>
+                                        <li class="list"> <span class="regular"> Checkin Sırasında Ödenecek </span> <span class="strong"> {{pay_in_checkin}}</span> </li>
+                                    </ul>
+                                    <ul class="checkout-flex-list list-style-none checkout-border-top pt-3 mt-3">
+                                        <li class="list"> <span class="regular"> Toplam </span> <span class="strong color-one fs-20"> {{total_price}} </span> </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}
