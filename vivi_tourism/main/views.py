@@ -11,7 +11,7 @@ from django.conf import settings
 from django.core.mail import EmailMessage, get_connection
 from django.conf import settings
 from django.contrib import messages #import messages
-
+import os
 
 
 def home(request):
