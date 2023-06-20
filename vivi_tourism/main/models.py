@@ -11,7 +11,7 @@ class Villa( models.Model ):
 
     name = models.CharField( max_length=50, null=False )
     kind = models.CharField( max_length=50, null=False )
-    explanation = models.CharField( max_length=3000, null=False )
+    explanation = models.TextField( default='', blank=False )
     capacity = models.IntegerField(null=False)
     extra = models.CharField(max_length=1000,null=True)
     num_bathroom = models.IntegerField(null=False)

@@ -69,7 +69,7 @@
                                         {% if villa.has_parking %}
                                         <div class="hotel-view-contents-icon d-flex gap-1">
                                             <span> <i class="las la-parking"></i> </span>
-                                            <p class="hotel-view-contents-icon-title flex-fill"> Parking </p>
+                                            <p class="hotel-view-contents-icon-title flex-fill"> Park Alanı </p>
                                         </div>
                                         {% endif %}
                                         {% if villa.has_wifi %}
@@ -83,28 +83,28 @@
 
                                         <div class="hotel-view-contents-icon d-flex gap-1">
                                             <span> <i class="las la-coffee"></i> </span>
-                                            <p class="hotel-view-contents-icon-title flex-fill"> Breakfast </p>
+                                            <p class="hotel-view-contents-icon-title flex-fill"> Kahvaltı </p>
                                         </div>
                                         {% endif %}
                                         {% if villa.has_cleaning_service %}
 
                                         <div class="hotel-view-contents-icon d-flex gap-1">
                                             <span> <i class="las la-quidditch"></i> </span>
-                                            <p class="hotel-view-contents-icon-title flex-fill"> Room Service </p>
+                                            <p class="hotel-view-contents-icon-title flex-fill"> Temizlik </p>
                                         </div>
                                         {% endif %}
                                 {% if villa.has_pool %}
 
                                         <div class="hotel-view-contents-icon d-flex gap-1">
                                             <span> <i class="las la-swimming-pool"></i> </span>
-                                            <p class="hotel-view-contents-icon-title flex-fill"> Pool </p>
+                                            <p class="hotel-view-contents-icon-title flex-fill"> Havuz </p>
                                         </div>
                                         {% endif %}
                                         {% if villa.has_reception %}
 
                                         <div class="hotel-view-contents-icon d-flex gap-1">
                                             <span> <i class="las la-receipt"></i> </span>
-                                            <p class="hotel-view-contents-icon-title flex-fill"> Reception </p>
+                                            <p class="hotel-view-contents-icon-title flex-fill"> Resepsiyon </p>
                                         </div>
                                         {% endif %}
 
@@ -131,7 +131,7 @@
 
                                 <div id="about" class="tab-content-item active">
                                     <div class="about-tab-contents">
-                                        <p class="about-tab-contents-para"> {{villa.explanation}} </p>
+                                        <p class="about-tab-contents-para"> {{ villa.explanation|linebreaks }} </p>
                                     </div>
 
 
@@ -220,7 +220,7 @@
   height="320"
   frameborder="0"
   style="border:0"
-  src="https://maps.google.com/maps?q=+{{villa.lat}}+,+{{villa.long}}+&hl=es&z=14&amp;output=embed">
+  src="https://maps.google.com/maps?q=+{{villa.lat}}+,+{{villa.long}}+&hl=tr&z=14&amp;output=embed">
            allowfullscreen
 
  </iframe>
