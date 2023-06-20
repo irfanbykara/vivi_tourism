@@ -8,10 +8,9 @@ from django.contrib.auth.models import User
 
 class Villa( models.Model ):
     readonly_fields = ('id',)
-
     name = models.CharField( max_length=50, null=False )
     kind = models.CharField( max_length=50, null=False )
-    explanation = models.TextField( default='', blank=False )
+    explanation = models.TextField(  )
     capacity = models.IntegerField(null=False)
     extra = models.CharField(max_length=1000,null=True)
     num_bathroom = models.IntegerField(null=False)
