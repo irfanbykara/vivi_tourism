@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=50)),
                 ('kind', models.CharField(max_length=50)),
-                ('explanation', models.TextField(default='',blank=False)),
+                ('explanation', models.TextField()),
                 ('capacity', models.IntegerField()),
                 ('extra', models.CharField(max_length=500, null=True)),
                 ('num_bathroom', models.IntegerField()),
