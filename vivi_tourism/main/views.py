@@ -12,6 +12,9 @@ from django.core.mail import EmailMessage, get_connection
 from django.conf import settings
 from django.contrib import messages #import messages
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def home(request):
@@ -68,6 +71,8 @@ def contact(request):
 
         try:
             if request.method == "POST":
+                print('gott itttttt')
+                print(os.getenv('EMAIL_HOST'))
                 with get_connection(
                         host=os.environ.get('EMAIL_HOST'),
                         port=os.environ.get('EMAIL_PORT'),
@@ -76,15 +81,20 @@ def contact(request):
                         use_tls=os.environ.get('EMAIL_USE_TSL'),
 
                 ) as connection:
+                    print('connection done')
                     subject = request.POST.get("name") + ' '+  request.POST.get("surname")
+                    print(subject)
                     email_from = os.environ.get('EMAIL_HOST_USER')
-                    recipient_list = ["erol_songur@hotmail.com"]
+                    recipient_list = ["irfanbykara@gmail.com"]
+                    print(email_from)
+
                     message = subject + ' adlı kişiden bir mesajınız var! :\n email: '+ request.POST.get("email") +"\n"+ request.POST.get("message") + '\n Numara: ' +request.POST.get("phone")
                     EmailMessage(subject, message, email_from, recipient_list, connection=connection).send()
             messages.success(request, "Mesajınız başarıyla iletildi.")
             #return redirect('home')
 
-        except:
+        except Exception as e:
+            print(e)
             messages.error(request, "Mesajınız gönderilemedi. Lütfen tekrar deneyin.")
 
 
