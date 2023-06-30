@@ -69,17 +69,17 @@ def contact(request):
         try:
             if request.method == "POST":
                 with get_connection(
-                        host=settings.EMAIL_HOST,
-                        port=settings.EMAIL_PORT,
-                        username=os.environ.get('USER_MAIL'),
+                        host=os.environ.get('EMAIL_HOST'),
+                        port=os.environ.get('EMAIL_PORT'),
+                        username=os.environ.get('EMAIL_HOST_USER'),
                         password=os.environ.get('PASSWORD'),
-                        use_tls=settings.EMAIL_USE_TLS,
+                        use_tls=os.environ.get('EMAIL_USE_TSL'),
 
                 ) as connection:
                     subject = request.POST.get("name") + ' '+  request.POST.get("surname")
-                    email_from = settings.EMAIL_HOST_USER
-                    recipient_list = [request.POST.get("email"), ]
-                    message = subject + ' adlı kişiden bir mesajınız var! : ' + request.POST.get("message") + '\n Numara: ' +request.POST.get("phone")
+                    email_from = os.environ.get('EMAIL_HOST_USER')
+                    recipient_list = ["erol_songur@hotmail.com"]
+                    message = subject + ' adlı kişiden bir mesajınız var! :\n email: '+ request.POST.get("email") +"\n"+ request.POST.get("message") + '\n Numara: ' +request.POST.get("phone")
                     EmailMessage(subject, message, email_from, recipient_list, connection=connection).send()
             messages.success(request, "Mesajınız başarıyla iletildi.")
             #return redirect('home')
@@ -104,6 +104,7 @@ def villa_detail(request, pk):
     villa = Villa.objects.get( id=pk )
     price_intervals = PriceInterval.objects.all()
     price_intervals = price_intervals.filter(villa=villa)
+
 
     if request.method == "POST":
         data = request.POST

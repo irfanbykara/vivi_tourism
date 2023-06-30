@@ -34,7 +34,16 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css' rel='stylesheet' type='text/css'>
+  <style>
+    /* Override styles for daterangepicker td.off */
+    .daterangepicker td.off {
+      /* Add your custom styles here */
+      background-color: grey;
+      color: white;
+    }
 
+
+  </style>
 
 </head>
 
@@ -145,7 +154,6 @@ for (var i = 0; i < date_list.length; i++) {
     }
 
   });
-  alert(input[name="datetimes"]);
 });
 
 </script>
@@ -160,9 +168,35 @@ var newDate = new Date();
     startDate: moment().startOf('hour'),
     endDate: moment().startOf('hour').add(32, 'hour'),
     singleDatePicker:false,
-    locale: {
-      format: 'DD.M.Y'
+    "locale": {
+        'DD.M.Y',
+        "daysOfWeek": [
+            "Pzt",
+            "Sa",
+            "Çar",
+            "Per",
+            "Cu",
+            "Cmt",
+            "Pa"
+        ],
+        "monthNames": [
+            "Ocak",
+            "Şubat",
+            "Mart",
+            "Nisan",
+            "Mayıs",
+            "Haziran",
+            "Temmuz",
+            "Ağustos",
+            "Eylül",
+            "Ekim",
+            "Kasım",
+            "Aralık"
+        ],
+        "firstDay": 0
     }
+
+  }
   });
 });
 
