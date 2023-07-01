@@ -73,6 +73,8 @@ def contact(request):
             if request.method == "POST":
                 print('gott itttttt')
                 print(os.getenv('EMAIL_HOST'))
+                print(os.getenv('EMAIL_PORT'))
+
                 with get_connection(
                         host=os.environ.get('EMAIL_HOST'),
                         port=os.environ.get('EMAIL_PORT'),
