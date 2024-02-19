@@ -12,6 +12,7 @@
       <change afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/request_summary.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templatetags/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templatetags/turkish_month_name.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vivi_tourism" beforeDir="false" afterPath="$PROJECT_DIR$/vivi_tourism" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vivi_tourism/.env.sample" beforeDir="false" afterPath="$PROJECT_DIR$/vivi_tourism/.env.sample" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/models.py" afterDir="false" />
@@ -63,8 +64,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/vivi_tourism/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="31" column="16" lean-forward="true" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+            <state relative-caret-position="397">
+              <caret line="118" column="21" lean-forward="true" selection-start-line="118" selection-start-column="21" selection-end-line="118" selection-end-column="21" />
               <folding>
                 <element signature="e#311#335#0" expanded="true" />
               </folding>
@@ -206,7 +207,6 @@
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/blog_detail.html" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/static/static/assets/css/style.css" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/static/assets/css/style.css" />
-        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/vivi_tourism/settings.py" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/admin.py" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/models.py" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/templates/navbar.html" />
@@ -223,6 +223,7 @@
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/contact.html" />
         <option value="$PROJECT_DIR$/vivi_tourism/.env" />
         <option value="$PROJECT_DIR$/vivi_tourism/.env.sample" />
+        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/vivi_tourism/settings.py" />
       </list>
     </option>
   </component>
@@ -302,9 +303,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="830" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49814814" visible="true" weight="0.24966975" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49814814" visible="true" weight="0.24966975" />
       <window_info id="Structure" order="1" sideWeight="0.50185186" side_tool="true" weight="0.24966975" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -315,7 +315,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32956153" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.2274678" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.2274678" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32956153" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -697,8 +697,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/vivi_tourism/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="31" column="16" lean-forward="true" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+        <state relative-caret-position="397">
+          <caret line="118" column="21" lean-forward="true" selection-start-line="118" selection-start-column="21" selection-end-line="118" selection-end-column="21" />
           <folding>
             <element signature="e#311#335#0" expanded="true" />
           </folding>
