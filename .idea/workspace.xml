@@ -6,12 +6,16 @@
       <change afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/consts.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/static/assets/img/under_construction/caravan.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/static/assets/img/under_construction/tour.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/static/assets/img/under_construction/yatch.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/admin_dashboard.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/coming_soon.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/login.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/partial_villa_list.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/request_summary.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templatetags/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templatetags/turkish_month_name.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vivi_tourism" beforeDir="false" afterPath="$PROJECT_DIR$/vivi_tourism" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vivi_tourism/.env.sample" beforeDir="false" afterPath="$PROJECT_DIR$/vivi_tourism/.env.sample" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/admin.py" afterDir="false" />
@@ -41,61 +45,25 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/views.py">
+        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1062">
-              <caret line="110" column="44" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="44" />
+            <state relative-caret-position="1054">
+              <caret line="67" selection-start-line="67" selection-end-line="67" />
               <folding>
-                <element signature="e#0#45#0" expanded="true" />
+                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/contact.html">
+        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="71" column="17" lean-forward="true" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/vivi_tourism/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="118" column="21" lean-forward="true" selection-start-line="118" selection-start-column="21" selection-end-line="118" selection-end-column="21" />
+            <state relative-caret-position="187">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
-                <element signature="e#311#335#0" expanded="true" />
+                <element signature="e#0#28#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vivi_tourism/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vivi_tourism/docker-compose.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="15" lean-forward="true" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vivi_tourism/docker-compose-deploy.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="32" column="19" lean-forward="true" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -103,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/villa_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="123" column="46" lean-forward="true" selection-start-line="123" selection-start-column="46" selection-end-line="123" selection-end-column="46" />
+            <state relative-caret-position="376">
+              <caret line="280" lean-forward="true" selection-start-line="280" selection-end-line="280" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#section#0;n#div#1;n#div#0;n#div#0;n#div#1;n#section#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#iframe#0;n#div#0;n#div#2;n#div#0;n#div#1;n#section#0;n#!!top" expanded="true" />
@@ -113,23 +81,79 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/partial_villa_list.html">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/vivi_tourism/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="45" lean-forward="true" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+            <state relative-caret-position="329">
+              <caret line="114" column="5" lean-forward="true" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
               <folding>
-                <element signature="n#style#0;n#span#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#311#335#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/templates/main.html">
+        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/blog_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1">
-              <caret line="232" column="9" lean-forward="true" selection-start-line="232" selection-start-column="9" selection-end-line="232" selection-end-column="9" />
+            <state relative-caret-position="629">
+              <caret line="37" column="115" selection-start-line="37" selection-start-column="115" selection-end-line="37" selection-end-column="115" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/templates/navbar.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/coming_soon.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="57" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/contact.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="25" selection-start-line="18" selection-end-line="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/home.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="11" selection-start-line="1" selection-end-line="2" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#div#1;n#div#0;n#div#0;n#section#0;n#!!top" />
+                <element signature="n#div#2;n#div#0;n#div#0;n#section#0;n#!!top" />
+                <element signature="n#div#3;n#div#0;n#div#0;n#section#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="799">
+              <caret line="47" column="86" selection-start-line="47" selection-start-column="86" selection-end-line="47" selection-end-column="86" />
             </state>
           </provider>
         </entry>
@@ -146,16 +170,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sort_villas</find>
-      <find>den baş</find>
-      <find>datetimes_home</find>
-      <find>shop-grid-</find>
-      <find>alert</find>
-      <find>hakkımı</find>
-      <find>expla</find>
-      <find>filtrele</find>
-      <find>reserva</find>
-      <find>tümü</find>
       <find>default_price =</find>
       <find>tüm bölgeler</find>
       <find>form</find>
@@ -168,14 +182,24 @@
       <find>villas</find>
       <find>villa_de</find>
       <find>default</find>
-      <find>villa_deta</find>
       <find>include</find>
       <find>checkin-date</find>
       <find>arası</find>
       <find>villa</find>
-      <find>price</find>
       <find>print</find>
       <find>email</find>
+      <find>contact</find>
+      <find>redirect</find>
+      <find>messages</find>
+      <find>admin_dash</find>
+      <find>dashbo</find>
+      <find>except</find>
+      <find>login</find>
+      <find>villa_deta</find>
+      <find>explana</find>
+      <find>parag</find>
+      <find>yatch</find>
+      <find>price</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -202,27 +226,29 @@
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/consts.py" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/static/static/assets/js/intlTelInput.js" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/static/assets/js/intlTelInput.js" />
-        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/coming_soon.html" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/blog.html" />
-        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/blog_detail.html" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/static/static/assets/css/style.css" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/static/assets/css/style.css" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/admin.py" />
-        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/models.py" />
-        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/templates/navbar.html" />
-        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/home.html" />
-        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/urls.py" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/villas.html" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/request_summary.html" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templatetags/turkish_month_name.py" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/templates/footer.html" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/templates/main.html" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/partial_villa_list.html" />
-        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/views.py" />
-        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/villa_detail.html" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/contact.html" />
         <option value="$PROJECT_DIR$/vivi_tourism/.env" />
         <option value="$PROJECT_DIR$/vivi_tourism/.env.sample" />
+        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/home.html" />
+        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/login.html" />
+        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/admin_dashboard.html" />
+        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/models.py" />
+        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/blog_detail.html" />
+        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/templates/navbar.html" />
+        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/urls.py" />
+        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/views.py" />
+        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/coming_soon.html" />
+        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/villa_detail.html" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/vivi_tourism/settings.py" />
       </list>
     </option>
@@ -238,7 +264,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -251,10 +276,55 @@
               <item name="vivi_tourism_app" type="462c0819:PsiDirectoryNode" />
               <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="vivi_tourism_app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vivi_tourism_app" type="462c0819:PsiDirectoryNode" />
+              <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
+              <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vivi_tourism_app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vivi_tourism_app" type="462c0819:PsiDirectoryNode" />
+              <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
+              <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vivi_tourism_app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vivi_tourism_app" type="462c0819:PsiDirectoryNode" />
+              <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
+              <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vivi_tourism_app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vivi_tourism_app" type="462c0819:PsiDirectoryNode" />
+              <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
+              <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vivi_tourism_app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vivi_tourism_app" type="462c0819:PsiDirectoryNode" />
+              <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
+              <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vivi_tourism_app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vivi_tourism_app" type="462c0819:PsiDirectoryNode" />
+              <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
+              <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
+              <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -264,16 +334,16 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\irfan baykara\Desktop\Projects\vivi_tourism_app\vivi_tourism\vivi_tourism\main\static\assets\img\under_construction" />
-      <recent name="C:\Users\irfan baykara\Desktop\Projects\vivi_tourism_app\vivi_tourism\vivi_tourism\main\static\assets" />
-      <recent name="C:\Users\irfan baykara\Desktop\Projects\vivi_tourism_app\vivi_tourism\vivi_tourism\main\static" />
-      <recent name="C:\Users\irfan baykara\Desktop\Projects\vivi_tourism_app\vivi_tourism\vivi_tourism\main" />
-      <recent name="C:\Users\irfan baykara\Desktop\vivi_tourism_app\vivi_tourism\vivi_tourism\main\static\assets\img" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\irfan baykara\Desktop\Projects\vivi_tourism_app\vivi_tourism" />
       <recent name="C:\Users\irfan baykara\Desktop\vivi_tourism_app\vivi_tourism\vivi_tourism\static\static\assets\img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\irfan baykara\Desktop\Projects\vivi_tourism_app\vivi_tourism\vivi_tourism\main\static\assets\img\under_construction" />
+      <recent name="C:\Users\irfan baykara\Desktop\Projects\vivi_tourism_app\vivi_tourism\vivi_tourism\main\static" />
+      <recent name="C:\Users\irfan baykara\Desktop\Projects\vivi_tourism_app\vivi_tourism\vivi_tourism\main\static\assets" />
+      <recent name="C:\Users\irfan baykara\Desktop\Projects\vivi_tourism_app\vivi_tourism\vivi_tourism\main" />
+      <recent name="C:\Users\irfan baykara\Desktop\vivi_tourism_app\vivi_tourism\vivi_tourism\main\static\assets\img" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -303,8 +373,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="830" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49814814" visible="true" weight="0.24966975" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49814814" visible="true" weight="0.24966975" />
       <window_info id="Structure" order="1" sideWeight="0.50185186" side_tool="true" weight="0.24966975" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -315,7 +386,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32956153" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.2274678" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.2274678" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32956153" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -323,8 +394,8 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24966975" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49814814" visible="true" weight="0.24966975" />
+      <window_info id="Structure" order="1" sideWeight="0.50185186" side_tool="true" weight="0.24966975" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32904148" />
@@ -354,12 +425,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/static/assets/img/vivilla_logo.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/static/assets/img/logo.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/static/assets/img/02_logo.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -451,17 +516,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/coming_soon.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="53" selection-start-line="14" selection-end-line="15" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/common.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-7697">
@@ -473,13 +527,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
           <caret line="626" column="17" lean-forward="true" selection-start-line="626" selection-start-column="17" selection-end-line="626" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/blog_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="78" column="22" selection-start-line="78" selection-end-line="79" />
         </state>
       </provider>
     </entry>
@@ -517,19 +564,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-391">
-          <caret line="231" column="34" lean-forward="true" selection-start-line="231" selection-start-column="34" selection-end-line="231" selection-end-column="34" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#section#0;n#!!top" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#section#0;n#!!top" />
-            <element signature="n#div#3;n#div#0;n#div#0;n#section#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/consts.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -544,23 +578,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/templates/navbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="26" column="63" lean-forward="true" selection-start-line="26" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/payment_page.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-578">
@@ -570,16 +587,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templatetags/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/villas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3587">
-          <caret line="225" column="32" selection-start-line="225" selection-start-column="32" selection-end-line="225" selection-end-column="32" />
-          <folding>
-            <element signature="n#div#0;n#section#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templatetags/turkish_month_name.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -595,16 +602,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="76" column="33" selection-start-line="76" selection-start-column="33" selection-end-line="76" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -639,38 +636,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/villa_detail.html">
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/.env.sample">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="123" column="46" lean-forward="true" selection-start-line="123" selection-start-column="46" selection-end-line="123" selection-end-column="46" />
+        <state relative-caret-position="204">
+          <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/villas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="31" lean-forward="true" selection-start-line="10" selection-end-line="25" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#section#0;n#div#1;n#div#0;n#div#0;n#div#1;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#iframe#0;n#div#0;n#div#2;n#div#0;n#div#1;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#section#0;n#!!top" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/contact.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="71" column="17" lean-forward="true" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1062">
-          <caret line="110" column="44" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/docker-compose.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="15" lean-forward="true" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -681,10 +660,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/.env.sample">
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+        <state relative-caret-position="289">
+          <caret line="17" column="15" lean-forward="true" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -695,10 +674,111 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/admin_dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="23" column="24" lean-forward="true" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8143">
+          <caret line="498" selection-start-line="498" selection-end-line="498" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/blog_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="115" selection-start-line="37" selection-start-column="115" selection-end-line="37" selection-end-column="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/templates/navbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/coming_soon.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="57" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/contact.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="25" selection-start-line="18" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="11" selection-start-line="1" selection-end-line="2" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#0;n#div#0;n#section#0;n#!!top" />
+            <element signature="n#div#2;n#div#0;n#div#0;n#section#0;n#!!top" />
+            <element signature="n#div#3;n#div#0;n#div#0;n#section#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="86" selection-start-line="47" selection-start-column="86" selection-end-line="47" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/villa_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="280" lean-forward="true" selection-start-line="280" selection-end-line="280" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#section#0;n#div#1;n#div#0;n#div#0;n#div#1;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#iframe#0;n#div#0;n#div#2;n#div#0;n#div#1;n#section#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/vivi_tourism/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="118" column="21" lean-forward="true" selection-start-line="118" selection-start-column="21" selection-end-line="118" selection-end-column="21" />
+        <state relative-caret-position="329">
+          <caret line="114" column="5" lean-forward="true" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
           <folding>
             <element signature="e#311#335#0" expanded="true" />
           </folding>
