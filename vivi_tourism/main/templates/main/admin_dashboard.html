@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Breadcrumb area end -->
+    <!-- Contact Area Starts -->
+    <section class="contact-area pat-100 pab-100">
+         <div class="breadcrumb-area breadcrumb-padding">
+        <div class="container custom-container-one">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-contents">
+                        <h4 class="breadcrumb-contents-title"> Admin Paneli </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                {% include 'messages.html' %}
+
+ <div class="container">
+
+         <form action="{% url 'admin_dashboard' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Selection input for villa names -->
+        <label for="villa">Villa Adı:</label>
+        <select id="villa" name="villa">
+            {% for villa in villas %}
+                <option value="{{ villa.id }}">{{ villa.name }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Multiple image selection input -->
+        <label for="images">Görsel Seçiniz:</label>
+        <input type="file" id="images" name="images" multiple>
+
+        <!-- Submit button -->
+        <button type="submit">Görsel Ekle</button>
+    </form>
+
+        </div>
+
+            <br>
+      </div>
+
+        </div>
+
+    </section>
+    <!-- Contact Area end -->
+    <!-- footer area start -->
+
+{% endblock %}

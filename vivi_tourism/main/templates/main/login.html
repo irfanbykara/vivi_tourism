@@ -1,0 +1,73 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Breadcrumb area end -->
+    <!-- Contact Area Starts -->
+    <section class="contact-area pat-100 pab-100">
+         <div class="breadcrumb-area breadcrumb-padding">
+        <div class="container custom-container-one">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-contents">
+                        <h4 class="breadcrumb-contents-title"> İletişim </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ <div class="container">
+            <div class="login-wrapper login-shadow bg-white">
+                <div class="login-wrapper-flex">
+                    <div class="login-wrapper-thumb">
+                        <img src="{% static 'assets/img/banner/vivi_main.jpg' %}" alt="shapes">
+                    </div>
+
+
+                    <div class="login-wrapper-contents login-padding">
+                        <h2 class="single-title"> Hoşgeldiniz! </h2>
+                        {% if error_message %}
+                        <h2>{{error_message}}</h2>
+                        {% endif %}
+                        <p class="sigle-para mt-2"> Giriş Yapmak İçin Devam Edin </p>
+                        <form action="{% url 'admin_login' %}" method="POST" class="login-wrapper-contents-form custom-form" >
+                                                                {% csrf_token %}
+
+                            <div class="single-input mt-4">
+                                <label class="label-title mb-3"> Admin Kullanıcı Adı </label>
+                                <input class="form--control" name="username" type="text" placeholder="Email Or User Name">
+                            </div>
+                            <div class="single-input mt-4">
+                                <label class="label-title mb-3"> Parola </label>
+                                <input class="form--control" name="password" type="password" placeholder="Type Password">
+                                <div class="icon toggle-password">
+                                    <div class="show-icon"> <i class="las la-eye-slash"></i> </div>
+                                    <span class="hide-icon"> <i class="las la-eye"></i> </span>
+                                </div>
+                            </div>
+                                                    <div class="single-checkbox mt-3">
+                            <div class="checkbox-inline">
+                                <input class="check-input" name="rememberMe" type="checkbox" id="check15">
+                                <label class="checkbox-label" for="check15"> Remember Me </label>
+                            </div>
+                        </div>
+
+                                                                <button type="submit" class="submit-btn radius-5"> Gönder </button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <br>
+      </div>
+
+        </div>
+
+    </section>
+    <!-- Contact Area end -->
+    <!-- footer area start -->
+
+{% endblock %}

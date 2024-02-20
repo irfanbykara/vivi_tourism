@@ -16,7 +16,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-
+#
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,7 +38,7 @@ MESSAGE_TAGS = {
  }
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(int(os.environ.get('DEBUG', 0)))
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'ckeditor',
+
 ]
 
 MIDDLEWARE = [

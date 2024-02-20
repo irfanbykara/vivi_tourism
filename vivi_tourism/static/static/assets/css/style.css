@@ -8692,6 +8692,7 @@ span {
   transition: 0.3s;
 }
 .single-why-two:hover {
+
   background-color: var(--main-color-one);
   border-color: var(--main-color-one);
   color: #fff;
@@ -8708,6 +8709,8 @@ span {
   color: var(--main-color-one);
 }
 .single-why-two:hover .single-why-two-contents-title {
+    height: 100%; /* Ensures content takes up full height */
+
   color: #fff;
 }
 .single-why-two:hover .single-why-two-contents-para {
@@ -8732,6 +8735,7 @@ span {
   }
 }
 .single-why-two-icon {
+
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8764,6 +8768,7 @@ span {
   transition: 0.3s;
 }
 .single-why-two-contents-title:hover {
+
   color: var(--main-color-one);
 }
 .single-why-two-contents-para {
@@ -8841,18 +8846,21 @@ div[class*=col]:nth-child(4n+4) .single-why-two:hover .single-why-two-contents-p
   border: 1px solid rgba(221, 221, 221, 0.7);
   padding: 20px;
   border-radius: 0 0 20px 20px;
+
 }
 .single-attraction-contents-title {
   font-size: 20px;
   font-weight: 700;
   line-height: 28px;
   margin: -4px 0 0;
+
 }
 .single-attraction-contents-para {
   font-size: 16px;
   line-height: 24px;
   color: var(--paragraph-color);
   margin-top: 12px;
+
 }
 
 .single-attraction-two {
@@ -8861,6 +8869,7 @@ div[class*=col]:nth-child(4n+4) .single-why-two:hover .single-why-two-contents-p
   border-radius: 20px;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+
 }
 .single-attraction-two:hover .single-attraction-two-contents {
   visibility: visible;
@@ -8876,6 +8885,12 @@ div[class*=col]:nth-child(4n+4) .single-why-two:hover .single-why-two-contents-p
     width: 100%;
   }
 }
+@media (max-width: 899px) {
+    .shop-sidebar-content {
+        display: block;
+    }
+}
+
 .single-attraction-two-contents {
   position: absolute;
   bottom: -50px;
@@ -8885,7 +8900,6 @@ div[class*=col]:nth-child(4n+4) .single-why-two:hover .single-why-two-contents-p
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   padding: 20px 10px;
-  visibility: hidden;
   opacity: 0;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -8895,6 +8909,8 @@ div[class*=col]:nth-child(4n+4) .single-why-two:hover .single-why-two-contents-p
   -ms-overflow-style: none;
   -moz-appearance: none !important;
   scrollbar-width: thin;
+    visibility: visible;
+
 }
 .single-attraction-two-contents::-webkit-scrollbar {
   width: 5px !important;
@@ -8914,6 +8930,7 @@ div[class*=col]:nth-child(4n+4) .single-why-two:hover .single-why-two-contents-p
   font-size: 20px;
   font-weight: 700;
   line-height: 28px;
+
   margin: -4px 0 0;
   color: #fff;
   -webkit-transition: 0.2s;
@@ -8924,6 +8941,7 @@ div[class*=col]:nth-child(4n+4) .single-why-two:hover .single-why-two-contents-p
 }
 .single-attraction-two-contents-para {
   font-size: 16px;
+
   line-height: 24px;
   color: var(--paragraph-color);
   margin-top: 12px;
@@ -10918,39 +10936,33 @@ blockquote .blockquote-contents-title {
       -ms-flex-pack: start;
           justify-content: flex-start;
 }
-@media (min-width: 300px) and (max-width: 991.98px) {
-  .shop-contents-wrapper {
-    display: block;
-  }
-}
-.shop-contents-wrapper .shop-sidebar-content {
-  width: 330px;
-  margin-right: 30px;
-  position: sticky;
-  top: 0;
-}
+
 @media (min-width: 1200px) and (max-width: 1399.98px) {
   .shop-contents-wrapper .shop-sidebar-content {
     width: 300px;
   }
 }
+
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .shop-contents-wrapper .shop-sidebar-content {
     width: 250px;
   }
 }
+
 @media (min-width: 300px) and (max-width: 991.98px) {
   .shop-contents-wrapper .shop-sidebar-content {
     width: 375px;
     position: unset;
   }
 }
+
 .shop-contents-wrapper .shop-grid-contents {
   width: 100%;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
 }
+
 @media (min-width: 1200px) and (max-width: 1399.98px) {
   .shop-contents-wrapper .shop-grid-contents {
     max-height: 1410px;
@@ -10958,6 +10970,7 @@ blockquote .blockquote-contents-title {
     overflow-x: hidden;
   }
 }
+
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .shop-contents-wrapper .shop-grid-contents {
     max-height: 1410px;

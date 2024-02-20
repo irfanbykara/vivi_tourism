@@ -21,7 +21,7 @@
     </div>
 
         <div class="container">
-            <div class="shop-contents-wrapper">
+<!--            <div class="shop-contents-wrapper">-->
                 <div class="row gy-5">
                     <div class="col-xl-8 col-lg-8">
                         <div class="blog-details-wrapper">
@@ -34,19 +34,19 @@
                                     <div class="single-blog-details-thumb mt-4">
                                         <img class="radius-5" src="{{blog.first_image.url}}" alt="">
                                     </div>
-                                    <p class="single-blog-details-content-para mt-4"> {{blog.first_parag}} </p>
-                                    <p class="single-blog-details-content-para mt-4"> {{blog.second_parag}} </p>
+                                    <p class="single-blog-details-content-para mt-4"> {{ blog.first_parag_rich|safe }} </p>
+                                    <p class="single-blog-details-content-para mt-4"> {{blog.second_parag_rich|safe}} </p>
                                     <blockquote class="section-bg-1 mt-4">
                                         <div class="blockquote-contents">
                                             <h3 class="blockquote-contents-title color-heading fw-500"> {{blog.mid_title}}</h3>
                                         </div>
                                     </blockquote>
-                                    <p class="single-blog-details-content-para mt-4"> {{blog.third_parag}} </p>
+                                    <p class="single-blog-details-content-para mt-4"> {{blog.third_parag_rich|safe}} </p>
                                     <div class="blog-details-advertise center-text mt-4">
                                         <a href="javascript:void(0)"> <img class="radius-5" src="{{blog.third_image.url}}" alt=""> </a>
                                     </div>
-                                    <p class="single-blog-details-content-para mt-4"> {{blog.forth_parag}}</p>
-                                    <p class="single-blog-details-content-para mt-4"> {{blog.fifth_parag}} </p>
+                                    <p class="single-blog-details-content-para mt-4"> {{blog.forth_parag_rich|safe}}</p>
+                                    <p class="single-blog-details-content-para mt-4"> {{blog.fifth_parag_rich|safe}} </p>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+<!--            </div>-->
         </div>
     </section>
 

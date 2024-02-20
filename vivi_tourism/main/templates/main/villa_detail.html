@@ -18,6 +18,7 @@
             </div>
         </div>
     </div>
+        {% include 'messages.html' %}
 
         <div class="container">
 
@@ -118,7 +119,7 @@
                                 <div class="hotel-view-contents-bottom">
                                     <div class="hotel-view-contents-bottom-flex">
                                         <div class="hotel-view-contents-bottom-contents">
-<!--                                            <h4 class="hotel-view-contents-bottom-title"> $230 <sub>/Night</sub> </h4>-->
+                                            <h4 class="hotel-view-contents-bottom-title"> ₺{{current_price}} <sub>/Gecelik</sub> </h4>
                                             <p class="hotel-view-contents-bottom-para"> ({{villa.capacity}} kişi, {{villa.num_room}} oda, {{villa.num_bathroom}} banyo) </p>
                                         </div>
                                     </div>
@@ -131,7 +132,9 @@
 
                                 <div id="about" class="tab-content-item active">
                                     <div class="about-tab-contents">
-                                        <p class="about-tab-contents-para"> {{ villa.explanation|linebreaks }} </p>
+<!--                                        <p class="about-tab-contents-para"> {{ villa.explanation|linebreaks }} </p>-->
+                                        <p class="about-tab-contents-para"> {{ villa.explanation_rich|safe }} </p>
+
                                     </div>
 
 
@@ -153,21 +156,31 @@
         {% for price in price_intervals %}
 
       <div class="col-xl-6 col-sm-6 col-12">
-        <div class="card">
+        <div class="card btn-outline-warning rounded-lg" style="border-color: rgba(255, 193, 7, 0.2);border-radius: 20px;">
           <div class="card-content">
             <div class="card-body">
               <div class="media d-flex">
                 <div class="align-self-center">
                   <i class="icon-pencil primary font-large-2 float-left"></i>
                 </div>
-                <div class="media-body text-right">
-                  <h3 class="text-success">{{price.price}} ₺</h3>
-                  <span>{{price.start_date|date:'d-m-Y'}} / {{price.end_date|date:'d-m-Y'}} arası</span>
-                </div>
+                  <div class="single-reservation-details-item">
+{% load turkish_month_name %}
+
+<span class="single-reservation-details-subtitle">
+    {{price.start_date.day}} {{ price.start_date|turkish_month_name }} {{price.start_date.year}} - {{price.end_date.day}} {{ price.end_date|turkish_month_name }} {{price.start_date.year}} arası
+</span>
+
+                                        <h5 class="single-reservation-details-title"> {{price.price}} ₺ </h5>
+                                    </div>
+<!--                <div class="media-body text-right">-->
+<!--                  <h3 class="text-success">{{price.price}} ₺</h3>-->
+<!--                  <span>{{price.start_date|date:'d-m-Y'}} / {{price.end_date|date:'d-m-Y'}} arası</span>-->
+<!--                </div>-->
               </div>
             </div>
           </div>
         </div>
+          <br>
       </div>
 
         {% endfor %}
@@ -192,16 +205,42 @@
 
                                         <div class="single-input">
                                             <label name="checkin-date" class="details-sidebar-dropdown-title"> Müsaitlik Görüntüle </label>
-                                                    <input type="text" name="datetimes" id="checkin-date" name ="checkin-date" class="form--control picker flatpickr-input" />
+                                                    <input type="text" name="datetimes" id="unique-date-picker" name ="checkin-date" class="form--control picker flatpickr-input" />
 
-<!--                                            <input id="checkin-date" name ="checkin-date" class="form&#45;&#45;control date-picker flatpickr-input" type="hidden" placeholder="Giriş">-->
                                         </div>
+                                        <div class="single-input mt-4">
+                                            <input  type="text"  id="name " name="name"class="form--control radius-5" placeholder="Ad" required>
+                                        </div>
+                                        <div class="single-input mt-4">
+                                            <input type="text" id="surname" name="surname" class="form--control radius-5" placeholder="Soyad" required>
+                                        </div>
+                                    <div class="single-input mt-4">
+                                        <input type="email"  id="email" name="email" class="form--control radius-5" placeholder="Email" required>
+                                    </div>
+                                    <div class="single-input mt-4">
+                                        <input type="tel"  id="tel" name="tel" class="form--control radius-5" id="tel" placeholder="Numara" required>
+                                    </div>
+                                    <div class="single-input mt-4">
+                                        <textarea  id="message" name="message" class="form--control form-message radius-5"></textarea>
+                                    </div>
+                                        <div class="checkout-sidebar">
+    <div class="checkout-sidebar-contents">
+        <ul class="checkout-flex-list list-style-none checkout-border-top pt-3 mt-3">
+            <li class="list"> <span class="regular"> Villa </span> <span class="strong"> {{villa.name}} </span> </li>
+                                                 {% include 'main/request_summary.html' %}
+
+        </ul>
+    </div>
+</div>
 
                                         <div class="btn-wrapper mt-4">
-                                            <center><a href="{% url 'contact' %}" class="cmn-btn btn-bg-1 btn-small">İletişime Geç</a></center>
+                                            <center><button type="submit" class="cmn-btn btn-bg-1 btn-small">Talep Gönder</button></center>
 
                                         </div>
                                     </form>
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -215,12 +254,13 @@
   frameborder="0"
   scrolling="no"
   marginheight="0"
+  place="false",
   marginwidth="0"
    width="100%"
   height="320"
   frameborder="0"
   style="border:0"
-  src="https://maps.google.com/maps?q=+{{villa.lat}}+,+{{villa.long}}+&hl=tr&z=14&amp;output=embed">
+  src="https://maps.google.com/maps?q={{villa.lat}},{{villa.long}}&hl=tr&z=14&amp;output=embed">
            allowfullscreen
 
  </iframe>
