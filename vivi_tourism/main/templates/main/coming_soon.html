@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Breadcrumb area end -->
+    <!-- Shop area starts -->
+    <section class="blog-area section-bg-1 pat-100 pab-100">
+            <div class="breadcrumb-area breadcrumb-padding">
+        <div class="container custom-container-one">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-contents">
+                        {% if page_name == "yatch" %}
+                                    <img src="{% static 'assets/img/under_construction/yatch.jpg' %}" alt="Tatillikya Yatch" style="border-radius: 50px;">
+                        {% elif page_name == "caravan" %}
+                <img src="{% static 'assets/img/under_construction/caravan.jpg' %}" alt="Tatillikya Caravan" style="border-radius: 50px;">
+                        {% elif page_name == "tour" %}
+
+                                        <img src="{% static 'assets/img/under_construction/tour.jpg' %}" alt="Tatillikya Turları" style="border-radius: 50px;">
+
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </section>
+{% endblock %}

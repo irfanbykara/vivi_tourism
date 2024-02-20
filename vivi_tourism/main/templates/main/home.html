@@ -4,6 +4,7 @@
 
 
 
+
 {% block content %}
 
     <!-- Banner area Starts -->
@@ -21,13 +22,13 @@
                         <span class="banner-single-content-reviews-icon"> <i class="las la-star"></i> </span>
                         <div class="banner-single-content-reviews-para">
                             <span> 2014'ten beri</span>
-                            <span> +300 memnun misafir </span>
+                            <span> +500 memnun misafir </span>
                         </div>
                     </div>
                 </div>
                 <div class="banner-thumb-wrap">
-                    <div class="banner-area-thumb">
-                        <img src="{% static 'assets/img/banner/vivi_main.jpg' %}" alt="">
+                    <div class="banner-area-thumb" >
+                        <img style="border-radius: 30px;" src="{% static 'assets/img/banner/vivi_main.jpg' %}" alt="">
                     </div>
                     <div class="banner-thumb-shape">
                         <img src="{% static 'assets/img/banner/img-shape1.svg' %}" alt="shapes">
@@ -36,53 +37,254 @@
             </div>
         </div>
     </div>
-    <!-- Banner area end -->
-    <div class="location-area">
-        <div class="container">
-            <div class="booking-form">
-                <form method="POST" action="{% url 'home' %}">
 
-                            {% csrf_token %}
+<div class="location-area">
+    <div class="container">
+        <div class="booking-form">
+            <form method="POST" action="{% url 'home' %}">
+                {% csrf_token %}
+                <div class="row no-margin">
+                    <div class="col-md-9">
+                        <div class="row no-margin">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <span class="form-label">Bölge Seçimi</span>
+                        <select class="form-select" id="zone_selection" name="zone_selection" aria-label="Bölge Seçimi">
+                            <option class="province-option" value="all_zones">Tüm Bölgeler</option>
 
-							<div class="row no-margin">
-								<div class="col-md-9">
-									<div class="row no-margin">
-										<div class="col-md-10">
-											<div class="form-group">
-												<span class="form-label">Giriş Çıkış Tarihleri</span>
-                                                    <input type="text" name="datetimes_home" id="checkin-date"  class="form--control picker flatpickr-input" />
-											</div>
-										</div>
-										<div class="col-md-2">
-											<div class="form-group">
-												<span class="form-label">Kişi Sayısı</span>
-												<select class="form-control" id="num_people" name="num_people">
+                            {% for province in provinces %}
+                            <option class="province-option" value="{{ province.id }}_province">{{ province.name }} (Tümü)</option>
+                            {% for zone in province.zone_set.all %}
+                            <option class="zone-option" value="{{ zone.id }}_zone" data-province="{{ province.id }}">{{ zone.name }}</option>
+                            {% endfor %}
+                            {% endfor %}
+                        </select>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <span class="form-label">Giriş Çıkış Tarihleri</span>
+                                    <input type="text" name="datetimes_home" id="checkin-date" class="form--control picker flatpickr-input" />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <span class="form-label">Kişi Sayısı</span>
+                                    {% if num_people %}
+                                        <select class="form-control" id="num_people" name="num_people">
+                                            <option {% if num_people == 1 %}selected{% endif %}>1</option>
+                                            <option {% if num_people == 2 %}selected{% endif %}>2</option>
+                                            <option {% if num_people == 3 %}selected{% endif %}>3</option>
+                                            <option {% if num_people == 4 %}selected{% endif %}>4</option>
+                                            <option {% if num_people == 5 %}selected{% endif %}>5</option>
+                                            <option {% if num_people == 6 %}selected{% endif %}>6</option>
+                                            <option {% if num_people == 7 %}selected{% endif %}>7</option>
+                                        </select>
+                            {% else %}
+                                    <select class="form-control" id="num_people" name="num_people">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                    </select>
+                                    {% endif %}
+                                    <span class="select-arrow"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-btn">
+                            <button type="submit" class="submit-btn radius-20">Ara</button>
+                        </div>
+                    </div>
 
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                    <option>6</option>
-                                                    <option>7</option>
-
-												</select>
-												<span class="select-arrow"></span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="form-btn ">
-										<button type="submit" class="submit-btn radius-20">Müsaitlikleri Görüntüle</button>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-
+                </div>
+            </form>
+            <!-- Detailed Search Button -->
         </div>
     </div>
+</div>
+
+        <div class="container">
+            <div class="row">
+<!--        <div class="col-md-6"> &lt;!&ndash; This will make the form cover half of the screen &ndash;&gt;-->
+
+<!--                                                <button id="detailed-search-toggle" class="btn btn-primary btn-xl float-end mt-2 ">Detaylı Arama</button>-->
+<!--        </div>-->
+            <!-- Detailed Search Form - Initially Hidden -->
+<!--            <div id="detailed-search-form" class="row no-margin mt-4" style="display: none;">-->
+<!--                <div class="col-md-12" style="">-->
+<!--                    <form method="POST" action="{% url 'home' %}">-->
+
+<!--                        {% csrf_token %}-->
+<!--                        <div class="checkout-single bg-grey radius-10" style="background-color: #f2f2f2;">-->
+<!--                            <h4 class="checkout-title"> Detaylı Arama </h4>-->
+<!--                            <div class="checkout-contents mt-3">-->
+<!--                                <div class="checkout-form custom-form">-->
+<!--                                        <div class="input-flex-item">-->
+<!--                                            <div class="single-input mt-4">-->
+<!--                                                <label class="label-title"> Konaklama Yeri Adı </label>-->
+<!--                                                <input class="form&#45;&#45;control" type="text" name="name" placeholder="Villa/Yat adı...">-->
+<!--                                            </div>-->
+<!--                                                                                    <div class="single-input mt-4">-->
+<!--                                            <label class="label-title"> Tatil Seçeneği </label>-->
+<!--                                    <select class="form-select" aria-label="">-->
+<!--                                        <option selected>Villa</option>-->
+<!--                                        <option value="1">Karavan</option>-->
+<!--                                        <option value="2">Yat</option>-->
+<!--                                    </select>-->
+<!--                                        </div>-->
+
+<!--                                        </div>-->
+
+<!--                                        <div class="input-flex-item">-->
+<!--                                                                                    <div class="single-input mt-4">-->
+<!--                                            <label class="label-title"> Kapasite </label>-->
+<!--                                    <select class="form-select" aria-label="">-->
+<!--                                        <option selected>1</option>-->
+<!--                                        <option value="1">1</option>-->
+<!--                                        <option value="2">2</option>-->
+<!--                                        <option value="3">3</option>-->
+<!--                                        <option value="4">4</option>-->
+<!--                                        <option value="5">5</option>-->
+<!--                                        <option value="6">6</option>-->
+<!--                                        <option value="7">7</option>-->
+
+<!--                                    </select>-->
+<!--                                        </div>-->
+<!--                                                                                                                                <div class="single-input mt-4">-->
+<!--                                            <label class="label-title"> Tatil Tipi </label>-->
+<!--                                    <select class="form-select" aria-label="">-->
+<!--                                        <option selected>Fethiye</option>-->
+<!--                                        <option value="1">Kaş</option>-->
+<!--                                        <option value="2">Antalya</option>-->
+<!--                                        <option value="3">Fethiye</option>-->
+<!--                                    </select>-->
+<!--                                        </div>-->
+
+<!--                                        </div>-->
+
+<!--                                        <div class="input-flex-item">-->
+<!--<div class="single-input mt-4">-->
+<!--                                                <label class="label-title"> Price </label>-->
+
+<!--    <div class="price-range-slider" data-start-min="0" data-start-max="10000" data-min="0" data-max="10000" data-step="5">-->
+<!--        <div class="ui-range-slider noUi-target noUi-ltr noUi-horizontal noUi-background">-->
+<!--        </div>-->
+<!--        <div class="ui-range-slider-footer">-->
+<!--            <div class="ui-range-values">-->
+<!--                <div class="ui-range-value-min">$<span class="min_price">3665-</span>-->
+<!--                    <input type="hidden" value="3665">-->
+<!--                </div>-->
+<!--                <div class="ui-range-value-max">$<span class="max_price">3665</span>-->
+<!--                    <input type="hidden" value="3665">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--                                </div>-->
+
+
+
+<!--                            </div>-->
+<!--        <div class="text-center mt-4">-->
+<!--            <button type="submit" class="btn btn-primary">Detaylı Ara</button>-->
+<!--        </div>-->
+
+<!--                        </div>-->
+
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+
+            </div></div>
+<br>
+    <!-- Banner area end -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-2 col-lg-4 col-md-6">
+                    <div class="single-why-two bg-white single-why-two-border radius-10">
+                        <div class="single-why-two-flex ">
+                            <div class="single-why-two-icon ">
+<i class="las la-shield-alt"></i>                            </div>
+                            <div class="single-why-two-contents ">
+                                <h4 class="single-why-two-contents-title"> <a href="{% url 'villas' %}?type=tam_korunakli&default_price=true"> Tam Korunaklı</a> </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-xl-2 col-lg-4 col-md-6">
+                    <div class="single-why-two bg-white single-why-two-border radius-10">
+                        <div class="single-why-two-flex">
+                            <div class="single-why-two-icon">
+<i class="las la-user-friends"></i>                            </div>
+                            <div class="single-why-two-contents">
+                                <h4 class="single-why-two-contents-title"> <a href="{% url 'villas' %}?type=balayi_villalari&default_price=true"> Balayı Villaları </a> </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-xl-2 col-lg-4 col-md-6">
+                    <div class="single-why-two bg-white single-why-two-border radius-10">
+                        <div class="single-why-two-flex">
+                            <div class="single-why-two-icon">
+<i class="las la-hot-tub"></i>                            </div>
+                            <div class="single-why-two-contents">
+                                <h4 class="single-why-two-contents-title"> <a href="{% url 'villas' %}?type=jakuzili&default_price=true"> Jakuzili </a> </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-4 col-md-6">
+                    <div class="single-why-two bg-white single-why-two-border radius-10">
+                        <div class="single-why-two-flex">
+                            <div class="single-why-two-icon">
+                                <i class="las la-water"></i>
+                            </div>
+                            <div class="single-why-two-contents">
+                                <h4 class="single-why-two-contents-title"> <a href="{% url 'villas' %}?type=deniz_manzarali&default_price=true"> Deniz Manzaralı </a> </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-4 col-md-6">
+                    <div class="single-why-two bg-white single-why-two-border radius-10">
+                        <div class="single-why-two-flex">
+                            <div class="single-why-two-icon">
+                                <i class="las la-gift"></i>
+                            </div>
+                            <div class="single-why-two-contents">
+                                <h4 class="single-why-two-contents-title"> <a href="{% url 'villas' %}?type=luks&default_price=true"> Lüks </a> </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-xl-2 col-lg-4 col-md-6">
+                    <div class="single-why-two bg-white single-why-two-border radius-10">
+                        <div class="single-why-two-flex">
+                            <div class="single-why-two-icon">
+<i class="las la-hand-holding-heart"></i>                            </div>
+                            <div class="single-why-two-contents">
+                                <h4 class="single-why-two-contents-title"> <a href="{% url 'villas' %}?type=ekonomik&default_price=true"> Ekonomik </a> </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+</div>
+        </div>
+
     <!-- Location end  -->
     <!-- Booking Two area starts -->
     <section class="booking-two-area pat-100 pab-50">
@@ -149,47 +351,47 @@
                     <div class="global-slick-init attraction-slider nav-style-one nav-color-two slider-inner-margin" data-infinite="true" data-arrows="true" data-dots="false" data-slidesToShow="4" data-swipeToSlide="true" data-autoplay="true" data-autoplaySpeed="2500" data-prevArrow='<div class="prev-icon radius-parcent-50"><i class="las la-angle-left"></i></div>'
                         data-nextArrow='<div class="next-icon radius-parcent-50"><i class="las la-angle-right"></i></div>' data-responsive='[{"breakpoint": 1400,"settings": {"slidesToShow": 4}},{"breakpoint": 1200,"settings": {"slidesToShow": 3}},{"breakpoint": 992,"settings": {"slidesToShow": 3}},{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576, "settings": {"slidesToShow": 1} }]'>
                         <div class="attraction-item">
-                            <div class="single-attraction-two radius-20">
-                                <div class="single-attraction-two-thumb">
+                            <div class="single-attraction radius-20">
+                                <div class="single-attraction-thumb">
                                     <a href="{% static 'assets/img/attraction/oludeniz.jpg' %}" class="gallery-popup"> <img src="{% static 'assets/img/attraction/oludeniz.jpg' %}" height="420" width="360" alt="Ölüdeniz"> </a>
                                 </div>
-                                <div class="single-attraction-two-contents">
-                                    <h4 class="single-attraction-two-contents-title"> <a href=""> Ölüdeniz </a> </h4>
-                                    <p class="single-attraction-two-contents-para"> 2006 senesinde dünyanın en iyi plajı seçilen Ölüdeniz sizleri bekliyor. </p>
+                                <div class="single-attraction-contents">
+                                    <h4 class="single-attraction-contents-title"> <a href=""> Ölüdeniz </a> </h4>
+                                    <p class="single-attraction-contents-para"> 2006 senesinde dünyanın en iyi plajı seçilen Ölüdeniz sizleri bekliyor. </p>
                                 </div>
                             </div>
                         </div>
                         <div class="attraction-item">
-                            <div class="single-attraction-two radius-20">
-                                <div class="single-attraction-two-thumb">
+                            <div class="single-attraction radius-20">
+                                <div class="single-attraction-thumb">
                                     <a href="{% static 'assets/img/attraction/kayakoy.jpg' %}" class="gallery-popup"> <img src="{% static 'assets/img/attraction/kayakoy.jpg' %}" height ="420" width="360" alt="Kayaköy"> </a>
                                 </div>
-                                <div class="single-attraction-two-contents">
-                                    <h4 class="single-attraction-two-contents-title"> <a href=""> Kayaköy </a> </h4>
-                                    <p class="single-attraction-two-contents-para"> Fethiye'nin hayalet köyünün tarihi, aktiviteler, yeme içme ve terk edilme sebepleri keşfedilmeyi bekliyor.
+                                <div class="single-attraction-contents">
+                                    <h4 class="single-attraction-contents-title"> <a href=""> Kayaköy </a> </h4>
+                                    <p class="single-attraction-contents-para"> Fethiye'nin hayalet köyünün tarihi, aktiviteler, yeme içme ve terk edilme sebepleri keşfedilmeyi bekliyor.
 . </p>
                                 </div>
                             </div>
                         </div>
                         <div class="attraction-item">
-                            <div class="single-attraction-two radius-20">
-                                <div class="single-attraction-two-thumb">
+                            <div class="single-attraction radius-20">
+                                <div class="single-attraction-thumb">
                                     <a href="{% static 'assets/img/attraction/kelebekler.jpg' %}" class="gallery-popup"> <img src="{% static 'assets/img/attraction/kelebekler.jpg' %}" height ="420" width="360" alt="Kelebekler Vadisi"> </a>
                                 </div>
-                                <div class="single-attraction-two-contents">
-                                    <h4 class="single-attraction-two-contents-title"> <a href=""> Kelebekler Vadisi </a> </h4>
-                                    <p class="single-attraction-two-contents-para"> Babadağ'ın eteklerinde bulunan Kelebekler Vadisi bakir doğasıyla turistlerin ilgi odağı. </p>
+                                <div class="single-attraction-contents">
+                                    <h4 class="single-attraction-contents-title"> <a href=""> Kelebekler Vadisi </a> </h4>
+                                    <p class="single-attraction-contents-para"> Babadağ'ın eteklerinde bulunan Kelebekler Vadisi bakir doğasıyla turistlerin ilgi odağı. </p>
                                 </div>
                             </div>
                         </div>
                         <div class="attraction-item">
-                            <div class="single-attraction-two radius-20">
-                                <div class="single-attraction-two-thumb">
+                            <div class="single-attraction radius-20">
+                                <div class="single-attraction-thumb">
                                     <a href="{% static 'assets/img/attraction/kaputas.jpg' %}"class="gallery-popup"> <img src="{% static 'assets/img/attraction/kaputas.jpg' %}" height ="420" width="360" alt="Kaputaş"> </a>
                                 </div>
-                                <div class="single-attraction-two-contents">
-                                    <h4 class="single-attraction-two-contents-title"> <a href=""> Kaputaş </a> </h4>
-                                    <p class="single-attraction-two-contents-para"> Antalya Kaş sınırları içerisindeki Kaputaş plajına Fethiye'den günübirlik ulaşım mümkün. </p>
+                                <div class="single-attraction-contents">
+                                    <h4 class="single-attraction-contents-title"> <a href=""> Kaputaş </a> </h4>
+                                    <p class="single-attraction-contents-para"> Antalya Kaş sınırları içerisindeki Kaputaş plajına Fethiye'den günübirlik ulaşım mümkün. </p>
                                 </div>
                             </div>
                         </div>
@@ -198,9 +400,9 @@
                                 <div class="single-attraction-two-thumb">
                                     <a href="{% static 'assets/img/attraction/patara.jpg' %}" class="gallery-popup"> <img src="{% static 'assets/img/attraction/patara.jpg' %}" height ="420" width="360" alt="Patara"> </a>
                                 </div>
-                                <div class="single-attraction-two-contents">
-                                    <h4 class="single-attraction-two-contents-title"> <a href=""> Patara </a> </h4>
-                                    <p class="single-attraction-two-contents-para"> Dünyanın en iyi plajları arasında gösterilen Patara'ya günübirlik ulaşım mümkün. </p>
+                                <div class="single-attraction-contents">
+                                    <h4 class="single-attraction-contents-title"> <a href=""> Patara </a> </h4>
+                                    <p class="single-attraction-contents-para"> Dünyanın en iyi plajları arasında gösterilen Patara'ya günübirlik ulaşım mümkün. </p>
                                 </div>
                             </div>
                         </div>

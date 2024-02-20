@@ -26,398 +26,226 @@
 
         <div class="container">
             <div class="booking-form">
-                <form method="POST" action="{% url 'home' %}">
+                <form id="main-form" method="GET" action="{% url 'villas' %}">
 
                             {% csrf_token %}
+    <!-- Hidden input field to store the value of all_villas -->
 
-							<div class="row no-margin">
-								<div class="col-md-9">
-									<div class="row no-margin">
-										<div class="col-md-10">
-											<div class="form-group">
-												<span class="form-label">Giriş Çıkış Tarihleri</span>
-                                                    <input type="text" name="datetimes_home" id="checkin-date"  class="form--control picker flatpickr-input" />
-											</div>
-										</div>
-										<div class="col-md-2">
-											<div class="form-group">
-												<span class="form-label">Kişi Sayısı</span>
-												<select class="form-control" id="num_people" name="num_people">
+                <div class="row no-margin">
+                    <div class="col-md-9">
+                        <div class="row no-margin">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <span class="form-label">Bölge Seçimi</span>
+                                    {% if selected_zone_id %}
+                        <select class="form-select" id="zone_selection" name="zone_selection" aria-label="Bölge Seçimi">
+                                                        <option class="province-option" value="all_zones">Tüm Bölgeler</option>
 
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                    <option>6</option>
-                                                    <option>7</option>
+                            {% for province in provinces %}
+                            <option class="province-option" value="{{ province.id }}_province"
+                                                    {% if province.id|stringformat:"s"|add:"_province" == selected_zone_id %}
+                                                selected
+                                            {% endif %}
+                                            >
 
-												</select>
-												<span class="select-arrow"></span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="form-btn ">
-										<button type="submit" class="submit-btn radius-20">Müsaitlikleri Görüntüle</button>
-									</div>
-								</div>
-							</div>
+                                    {{ province.name }} (Tümü)</option>
+                            {% for zone in province.zone_set.all %}
+                            <option class="zone-option" value="{{ zone.id }}_zone" data-province="{{ province.id }}"
+                                    {% if zone.id|stringformat:"s"|add:"_zone" == selected_zone_id %}
+    selected
+{% endif %}
+>
+
+                                    {{ zone.name }}</option>
+                            {% endfor %}
+                            {% endfor %}
+                        </select>
+                                    {% else %}
+                                    <select class="form-select" id="zone_selection" name="zone_selection" aria-label="Bölge Seçimi">
+                                        <option class="province-option" value="all_zones">Tüm Bölgeler</option>
+
+                            {% for province in provinces %}
+
+                            <option class="province-option" value="{{ province.id }}_province" >{{ province.name }} (Tümü)</option>
+                            {% for zone in province.zone_set.all %}
+                            <option class="zone-option" value="{{ zone.id }}_zone" data-province="{{ province.id }}">{{ zone.name }}</option>
+                            {% endfor %}
+                            {% endfor %}
+                        </select>
+
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <span class="form-label">Giriş Çıkış Tarihleri</span>
+{% if raw_dates %}
+    <input type="text" name="datetimes_home" id="checkin-date" class="form--control picker flatpickr-input" value="{{ raw_dates.0 }} - {{ raw_dates.1 }}" />
+{% else %}
+    <input type="text" name="datetimes_home" id="checkin-date" class="form--control picker flatpickr-input" />
+{% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <span class="form-label">Kişi Sayısı</span>
+
+                                    {% if num_people %}
+                                        <select class="form-control" id="num_people" name="num_people">
+                                            <option {% if num_people == '1' %}selected{% endif %}>1</option>
+                                            <option {% if num_people == '2' %}selected{% endif %}>2</option>
+                                            <option {% if num_people == '3' %}selected{% endif %}>3</option>
+                                            <option {% if num_people == '4' %}selected{% endif %}>4</option>
+                                            <option {% if num_people == '5' %}selected{% endif %}>5</option>
+                                            <option {% if num_people == '6' %}selected{% endif %}>6</option>
+                                            <option {% if num_people == '7' %}selected{% endif %}>7</option>
+                                        </select>
+                            {% else %}
+                                    <select class="form-control" id="num_people" name="num_people">
+        <option selected>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                    </select>
+                                    {% endif %}
+                                    <span class="select-arrow"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-btn">
+                            <button type="submit" class="submit-btn radius-20">Ara</button>
+                        </div>
+                    </div>
+
+                </div>
+
 						</form>
-					</div>
-            <div class="shop-contents-wrapper mt-5">
-                <div class="shop-icon">
-                    <div class="shop-icon-sidebar">
-                        <i class="las la-bars"></i>
+                <div class="row no-margin">
+                                    <div class="col-md-12">
+
+<form id="filter-form" method="GET" action="{% url 'villas' %}">
+    {% csrf_token %}
+
+    <div class="single-shop-left-inner margin-top-15">
+        <ul class="single-shop-left-list active-list list-style-none">
+            <div class="row">
+                {% for type in all_types %}
+                <div class="col-md-3">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input filter-checkbox" type="checkbox" id="{{type.id}}" name="type" value="{{ type.name }}"
+                            {% if type.name in selected_types %} checked {% endif %}>
+                        <label class="form-check-label" for="{{type.id}}">{{type.name}}</label>
                     </div>
                 </div>
-<!--                <div class="shop-sidebar-content">-->
+                {% endfor %}
+            </div>
+        </ul>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary" style="display: block;margin: 0 auto;">Filtrele</button>
+        <br>
+
+
+</form></div></div>
+
+					</div>
+
+            <div class="row">
+                <div class="col-xl-10 col-md-10 col-lg-10"></div>
+                        <div class="col-xl-2 col-md-2 col-lg-2">
+                                                                        <div class="form-group">
+                                                    <span class="form-label"> </span>
+
+<select id="sort-option" class="form-select btn btn-outline-warning dropdown-toggle" aria-label="Gelişmiş Sıralama">
+    <option value="popularity">Popüler</option>
+    <option value="price_asc">Fiyat Artan</option>
+    <option value="price_desc">Fiyat Azalan</option>
+</select>
+                                </div>
+
+                        </div>
+
+            </div>
+
+
+            <div class="shop-contents-wrapper mt-5">
+
+<!--            <div class="">-->
 <!--                    <div class="shop-close-content">-->
-<!--                        <div class="shop-close-content-icon"> <i class="las la-times"></i> </div>-->
-<!--                        <div class="single-shop-left bg-white radius-10">-->
-<!--                            <div class="single-shop-left-title open">-->
-<!--                                <h5 class="title"> Prices </h5>-->
-<!--                                <h5 class="title"> Prices </h5>-->
-<!--                                <div class="single-shop-left-inner mt-4">-->
-<!--                                    <form class="price-range-slider" method="post" data-start-min="0" data-start-max="10000" data-min="0" data-max="10000" data-step="5">-->
-<!--                                        <div class="ui-range-slider"></div>-->
-<!--                                        <div class="ui-range-slider-footer">-->
-<!--                                            <div class="ui-range-values">-->
-<!--                                                <span class="ui-price-title"> Price: </span>-->
-<!--                                                <div class="ui-range-value-min">$<span class="min_price">100</span>-->
-<!--                                                    <input type="hidden" value="100">-->
-<!--                                                </div>- -->
-<!--                                                <div class="ui-range-value-max">$<span class="max_price">9950</span>-->
-<!--                                                    <input type="hidden" value="9950">-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </form>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+<!--&lt;!&ndash;                        <div class="shop-close-content-icon"> <i class="las la-times"></i> </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="single-shop-left bg-white radius-10">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="single-shop-left-title open">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <h5 class="title"> Fiyat </h5>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div class="single-shop-left-inner mt-4">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <form class="price-range-slider" method="post" data-start-min="0" data-start-max="10000" data-min="0" data-max="10000" data-step="5">&ndash;&gt;-->
+<!--&lt;!&ndash;                                   <input type="text" id="range_12" data-plugin="range-slider"&ndash;&gt;-->
+<!--&lt;!&ndash;    data-type="double" data-min="1000" data-max="2000" data-from="1200"&ndash;&gt;-->
+<!--&lt;!&ndash;    data-to="1800" data-hide_min_max="true" data-hide_from_to="true"&ndash;&gt;-->
+<!--&lt;!&ndash;    data-grid="true" />&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </form>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+
 <!--                        <div class="single-shop-left bg-white radius-10 mt-4">-->
 <!--                            <div class="single-shop-left-title open">-->
-<!--                                <h5 class="title"> Amenities </h5>-->
-<!--                                <div class="single-shop-left-inner margin-top-15">-->
-<!--                                    <ul class="single-shop-left-list active-list list-style-none">-->
-<!--                                        <li class="item-search">-->
-<!--                                            <input type="text" class="form&#45;&#45;control" placeholder="Search Amenities">-->
-<!--                                            <div class="item-search-icon"> <i class="las la-search"></i> </div>-->
-<!--                                        </li>-->
-<!--                                        <li class="item"> <a href="javascript:void(0)"> Parking </a> </li>-->
-<!--                                        <li class="item active"> <a href="javascript:void(0)"> Room Service </a> </li>-->
-<!--                                        <li class="item"> <a href="javascript:void(0)"> Free Wifi </a> </li>-->
-<!--                                        <li class="item"> <a href="javascript:void(0)"> Healthy Breakfast </a> </li>-->
-<!--                                        <li class="item"> <a href="javascript:void(0)"> Flexible Checkout </a> </li>-->
-<!--                                        <li class="item"> <a href="javascript:void(0)"> Swimming Pool </a> </li>-->
-<!--                                        <li class="item"> <a href="javascript:void(0)"> Mini Fridge </a> </li>-->
-<!--                                        <li class="item"> <a href="javascript:void(0)"> Garden View </a> </li>-->
-<!--                                        <li class="item"> <a href="javascript:void(0)"> Play Ground </a> </li>-->
-<!--                                        <li class="more-amenities"> <a href="javascript:void(0)"> 23 More Amenities </a> </li>-->
-<!--                                    </ul>-->
-<!--                                </div>-->
+<!--                                <h5 class=""> Tesis Tipi </h5>-->
+
+<!--<form id="filter-form" method="GET" action="{% url 'villas' %}">-->
+<!--    {% csrf_token %}-->
+
+<!--    <div class="single-shop-left-inner margin-top-15">-->
+<!--        <ul class="single-shop-left-list active-list list-style-none">-->
+
+<!--            {% for type in all_types %}-->
+<!--            <div class="form-check form-switch">-->
+<!--                <input class="form-check-input filter-checkbox" type="checkbox" id="{{type.id}}" name="type" value="{{ type.name }}"-->
+<!--                    {% if type.name in selected_types %} checked {% endif %}>-->
+<!--                <label class="form-check-label" for="{{type.id}}">{{type.name}}</label>-->
+<!--            </div>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <br>-->
+<!--    <button type="submit" class="btn btn-primary" style="display: block;margin: 0 auto;">Filtrele</button>-->
+<!--</form>-->
 <!--                            </div>-->
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                </div>-->
-                <div class="shop-grid-contents">
+
+
+                <div class="shop-grid-contents" >
                     <div class="grid-list-contents">
                         <div class="grid-list-contents-flex">
-                            <p class="grid-list-contents-para"> {{villas.count}} sonuç gösteriliyor</p>
+                            <p class="grid-list-contents-para"> {{context_dict|length}} sonuç gösteriliyor</p>
                         </div>
                     </div>
                     <div id="tab-grid" class="tab-content-item active mt-4">
                         <div class="row gy-4">
-                            {% for villa in villas %}
-                            <div class="col-md-4">
-                                <div class="hotel-view bg-white radius-20">
-                                    <a href="{% url 'villa_detail' villa.id %}" class="hotel-view-thumb hotel-view-grid-thumb bg-image" >
-                                        <img src="{{villa.avatar.url}}" >
-                                    </a>
-                                    <div class="hotel-view-contents">
-                                        <div class="hotel-view-contents-header">
-                                            <h3 class="hotel-view-contents-title"> <a href="{% url 'villa_detail' villa.id %}"> {{villa.name}} </a> </h3>
-                                            <div class="hotel-view-contents-location mt-2">
-                                                <span class="hotel-view-contents-location-icon"> <i class="las la-map-marker-alt"></i> </span>
-                                                <span class="hotel-view-contents-location-para"> {{villa.address}}  </span>
-                                            </div>
-                                        </div>
-<!--                                        <div class="hotel-view-contents-middle">-->
-<!--                                            <div class="hotel-view-contents-flex">-->
-<!--                                                <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Car Parking">-->
-<!--                                                    <i class="las la-parking"></i>-->
-<!--                                                </div>-->
-<!--                                                <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Free Wifi">-->
-<!--                                                    <i class="las la-wifi"></i>-->
-<!--                                                </div>-->
-<!--                                                <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Free Breakfast">-->
-<!--                                                    <i class="las la-coffee"></i>-->
-<!--                                                </div>-->
-<!--                                                <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Home Service">-->
-<!--                                                    <i class="las la-quidditch"></i>-->
-<!--                                                </div>-->
-<!--                                                <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Swimming Pool">-->
-<!--                                                    <i class="las la-swimming-pool"></i>-->
-<!--                                                </div>-->
-<!--                                                <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Reception">-->
-<!--                                                    <i class="las la-receipt"></i>-->
-<!--                                                </div>-->
-<!--                                                <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Gym">-->
-<!--                                                    <i class="las la-dumbbell"></i>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-                                        <div class="hotel-view-contents-bottom">
-                                            <div class="hotel-view-contents-bottom-flex">
-                                                <div class="hotel-view-contents-bottom-contents">
-<!--                                                    <h4 class="hotel-view-contents-bottom-title"> $230 <sub>/Night</sub> </h4>-->
-                                                    <p class="hotel-view-contents-bottom-para"> ({{villa.capacity}} kişi, {{villa.num_room}} oda, {{villa.num_bathroom}} banyo) </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
+
+                            {% include 'main/partial_villa_list.html' %}
+
                         </div>
                     </div>
-<!--                    <div id="tab-list" class="tab-content-item mt-4">-->
-<!--                        <div class="row gy-4">-->
-<!--                            <div class="col-12">-->
-<!--                                <div class="hotel-view bg-white radius-20">-->
-<!--                                    <div class="hotel-view-flex">-->
-<!--                                        <a href="hotel_details.html" class="hotel-view-thumb hotel-view-list-thumb bg-image" style="background-image: url(assets/img/single-page/hotel-list1.jpg);">-->
-<!--                                        </a>-->
-<!--                                        <div class="hotel-view-contents">-->
-<!--                                            <div class="hotel-view-contents-header">-->
-<!--                                                <div class="hotel-view-contents-header-flex d-flex flex-wrap gap-3 align-items-center justify-content-between">-->
-<!--                                                    <span class="hotel-view-contents-review"> <i class="las la-star"></i> 4.5 <span class="hotel-view-contents-review-count"> (380) </span> </span>-->
-<!--                                                    <div class="btn-wrapper">-->
-<!--                                                        <a href="javascript:void(0)" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                                <h3 class="hotel-view-contents-title"> <a href="hotel_details.html"> King Suite Room </a> </h3>-->
-<!--                                                <div class="hotel-view-contents-location mt-2">-->
-<!--                                                    <span class="hotel-view-contents-location-icon"> <i class="las la-map-marker-alt"></i> </span>-->
-<!--                                                    <span class="hotel-view-contents-location-para"> 4140 Parker Rd. Allentown, New Mexico 31134  </span>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="hotel-view-contents-middle">-->
-<!--                                                <div class="hotel-view-contents-flex">-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-parking"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Parking </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-wifi"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Wifi </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-coffee"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Breakfast </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-quidditch"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Room Service </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-swimming-pool"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Pool </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-receipt"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Reception </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-dumbbell"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Gym </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <a class="hotel-view-contents-icon-more" href="javascript:void(0)"> +8 More </a>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="hotel-view-contents-bottom">-->
-<!--                                                <div class="hotel-view-contents-bottom-flex">-->
-<!--                                                    <div class="hotel-view-contents-bottom-contents d-flex flex-wrap gap-4 gap-sm-1">-->
-<!--                                                        <h4 class="hotel-view-contents-bottom-title"> $230 <sub>/Night</sub> </h4>-->
-<!--                                                        <p class="hotel-view-contents-bottom-para"> (4 Nights, 2 Rooms, 4 Persons) </p>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="col-12">-->
-<!--                                <div class="hotel-view bg-white radius-20">-->
-<!--                                    <div class="hotel-view-flex">-->
-<!--                                        <a href="hotel_details.html" class="hotel-view-thumb hotel-view-list-thumb bg-image" style="background-image: url(assets/img/single-page/hotel-list2.jpg);">-->
-<!--                                        </a>-->
-<!--                                        <div class="hotel-view-contents">-->
-<!--                                            <div class="hotel-view-contents-header">-->
-<!--                                                <div class="hotel-view-contents-header-flex d-flex flex-wrap gap-3 align-items-center justify-content-between">-->
-<!--                                                    <span class="hotel-view-contents-review"> <i class="las la-star"></i> 4.9 <span class="hotel-view-contents-review-count"> (476) </span> </span>-->
-<!--                                                    <div class="btn-wrapper">-->
-<!--                                                        <a href="javascript:void(0)" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                                <h3 class="hotel-view-contents-title"> <a href="hotel_details.html"> Queen Size Room </a> </h3>-->
-<!--                                                <div class="hotel-view-contents-location mt-2">-->
-<!--                                                    <span class="hotel-view-contents-location-icon"> <i class="las la-map-marker-alt"></i> </span>-->
-<!--                                                    <span class="hotel-view-contents-location-para"> 4140 Parker Rd. Allentown, New Mexico 31134  </span>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="hotel-view-contents-middle">-->
-<!--                                                <div class="hotel-view-contents-flex">-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-parking"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Parking </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-wifi"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Wifi </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-coffee"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Breakfast </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-quidditch"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Room Service </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-swimming-pool"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Pool </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-receipt"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Reception </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-dumbbell"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Gym </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <a class="hotel-view-contents-icon-more" href="javascript:void(0)"> +8 More </a>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="hotel-view-contents-bottom">-->
-<!--                                                <div class="hotel-view-contents-bottom-flex">-->
-<!--                                                    <div class="hotel-view-contents-bottom-contents d-flex flex-wrap gap-4 gap-sm-1">-->
-<!--                                                        <h4 class="hotel-view-contents-bottom-title"> $170 <sub>/Night</sub> </h4>-->
-<!--                                                        <p class="hotel-view-contents-bottom-para"> (3 Nights, 2 Rooms, 4 Persons) </p>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="col-12">-->
-<!--                                <div class="hotel-view bg-white radius-20">-->
-<!--                                    <div class="hotel-view-flex">-->
-<!--                                        <a href="hotel_details.html" class="hotel-view-thumb hotel-view-list-thumb bg-image" style="background-image: url(assets/img/single-page/hotel-list3.jpg);">-->
-<!--                                        </a>-->
-<!--                                        <div class="hotel-view-contents">-->
-<!--                                            <div class="hotel-view-contents-header">-->
-<!--                                                <div class="hotel-view-contents-header-flex d-flex flex-wrap gap-3 align-items-center justify-content-between">-->
-<!--                                                    <span class="hotel-view-contents-review"> <i class="las la-star"></i> 4.6 <span class="hotel-view-contents-review-count"> (394) </span> </span>-->
-<!--                                                    <div class="btn-wrapper">-->
-<!--                                                        <a href="javascript:void(0)" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                                <h3 class="hotel-view-contents-title"> <a href="hotel_details.html"> Big Size Room </a> </h3>-->
-<!--                                                <div class="hotel-view-contents-location mt-2">-->
-<!--                                                    <span class="hotel-view-contents-location-icon"> <i class="las la-map-marker-alt"></i> </span>-->
-<!--                                                    <span class="hotel-view-contents-location-para"> 4140 Parker Rd. Allentown, New Mexico 31134  </span>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="hotel-view-contents-middle">-->
-<!--                                                <div class="hotel-view-contents-flex">-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-parking"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Parking </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-wifi"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Wifi </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-coffee"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Breakfast </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-quidditch"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Room Service </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-swimming-pool"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Pool </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-receipt"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Reception </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <span> <i class="las la-dumbbell"></i> </span>-->
-<!--                                                        <p class="hotel-view-contents-icon-title flex-fill"> Gym </p>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                                        <a class="hotel-view-contents-icon-more" href="javascript:void(0)"> +8 More </a>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="hotel-view-contents-bottom">-->
-<!--                                                <div class="hotel-view-contents-bottom-flex">-->
-<!--                                                    <div class="hotel-view-contents-bottom-contents d-flex flex-wrap gap-4 gap-sm-1">-->
-<!--                                                        <h4 class="hotel-view-contents-bottom-title"> $200 <sub>/Night</sub> </h4>-->
-<!--                                                        <p class="hotel-view-contents-bottom-para"> (3 Nights, 3 Rooms, 3 Persons) </p>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="row mt-5">-->
-<!--                            <div class="col">-->
-<!--                                <div class="pagination-wrapper">-->
-<!--                                    <ul class="pagination-list list-style-none">-->
-<!--                                        <li class="pagination-list-item-prev">-->
-<!--                                            <a href="javascript:void(0)" class="pagination-list-item-button"> Prev </a>-->
-<!--                                        </li>-->
-<!--                                        <li class="pagination-list-item">-->
-<!--                                            <a href="javascript:void(0)" class="pagination-list-item-link"> 1 </a>-->
-<!--                                        </li>-->
-<!--                                        <li class="pagination-list-item active">-->
-<!--                                            <a href="javascript:void(0)" class="pagination-list-item-link"> 2 </a>-->
-<!--                                        </li>-->
-<!--                                        <li class="pagination-list-item">-->
-<!--                                            <a href="javascript:void(0)" class="pagination-list-item-link"> 3 </a>-->
-<!--                                        </li>-->
-<!--                                        <li class="pagination-list-item">-->
-<!--                                            <a href="javascript:void(0)" class="pagination-list-item-link"> 4 </a>-->
-<!--                                        </li>-->
-<!--                                        <li class="pagination-list-item">-->
-<!--                                            <a href="javascript:void(0)" class="pagination-list-item-link"> 5 </a>-->
-<!--                                        </li>-->
-<!--                                        <li class="pagination-list-item-next">-->
-<!--                                            <a href="javascript:void(0)" class="pagination-list-item-button"> Next </a>-->
-<!--                                        </li>-->
-<!--                                    </ul>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
                 </div>
             </div>
+
         </div>
+
+
+
+
+
+
+
     </section>
+
     <!-- Hotel List area end -->
     <!-- footer area start -->
 

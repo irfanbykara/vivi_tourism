@@ -24,8 +24,19 @@
                         </li>
                         <li><a href="{% url 'about' %}"> Hakkımızda </a></li>
                         <li class=" current-menu-item">
-                            <a href="{% url 'villas' %}">Villalarımız</a>
+                            <a href="{% url 'villas' %}?default_price=true">Villalarımız</a>
                         </li>
+                        <li class=" current-menu-item">
+                            <a href="{% url 'yatchs' %}">Yatlarımız</a>
+                        </li>
+                        <li class=" current-menu-item">
+                            <a href="{% url 'tours' %}">Turlarımız</a>
+                        </li>
+
+                        <li class=" current-menu-item">
+                            <a href="{% url 'caravans' %}">Karavanlarımız</a>
+                        </li>
+
                         <li class=" current-menu-item">
                             <a href="{% url 'blog' %}">Blog</a>
                         </li>

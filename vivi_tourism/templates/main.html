@@ -35,6 +35,14 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css' rel='stylesheet' type='text/css'>
 </style>
+<style>
+  .whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000; /* Adjust the z-index as needed */
+  }
+</style>
 
 </head>
 
@@ -45,6 +53,11 @@
         {% include 'navbar.html' %}
         <!-- Menu area end -->
     </header>
+<div class="whatsapp-button">
+<a href="https://api.whatsapp.com/send?phone=905528608484&text=Merhabalar, villalarınız hakkında bilgi almak istiyorum!" class="btn btn-success radius-40">
+    <i class="lab la-whatsapp fa-2x"></i>
+</a>
+</div>
 
     {% block content %}
 
@@ -88,6 +101,7 @@
     <!-- TellInput Js -->
     <script src="{% static 'assets/js/intlTelInput.js' %}"></script>
     <!-- main js -->
+    <script src="assets/js/nouislider-8.5.1.min.js"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
     <script src="{% static 'assets/js/popper.min.js' %}"></script>
     <script src="{% static 'assets/js/picker.js' %}"></script>
@@ -158,46 +172,228 @@ for (var i = 0; i < date_list.length; i++) {
 
 <script>
     $(function() {
-var newDate = new Date();
-  $('input[name="datetimes_home"]').daterangepicker({
+        var newDate = new Date();
+        {% if not raw_dates %}
+        var startDate = moment().startOf('hour');
+        var endDate = moment().startOf('hour').add(32, 'hour');
+        {% endif %}
+        $('input[name="datetimes_home"]').daterangepicker({
+            timePicker: false,
+            minDate: moment(),
+            {% if not raw_dates %}
+            startDate: startDate,
+            endDate: endDate,
+            {% endif %}
+            singleDatePicker: false,
+            autoApply: true,
+            locale: {
+                format: 'DD.M.Y',
+                daysOfWeek: [
+                    'Paz',
+                    'Pzt',
+                    'Sal',
+                    'Çar',
+                    'Per',
+                    'Cum',
+                    'Cmt',
+                ],
+                monthNames: [
+                    'Ocak',
+                    'Şubat',
+                    'Mart',
+                    'Nisan',
+                    'Mayıs',
+                    'Haziran',
+                    'Temmuz',
+                    'Ağustos',
+                    'Eylül',
+                    'Ekim',
+                    'Kasım',
+                    'Aralık',
+                ],
+                firstDay: 0
+            }
+        });
+    });
+</script>
 
-    timePicker: false,
-    minDate:moment(),
-    startDate: moment().startOf('hour'),
-    endDate: moment().startOf('hour').add(32, 'hour'),
-    singleDatePicker:false,
-    autoApply:true,
-   "locale": {
-           "format": "DD.M.Y",
+    <script>
+            // JavaScript to toggle the visibility of the detailed search form
+    document.getElementById("detailed-search-toggle").addEventListener("click", function() {
+        var detailedSearchForm = document.getElementById("detailed-search-form");
+        if (detailedSearchForm.style.display === "none") {
+            detailedSearchForm.style.display = "block";
+        } else {
+            detailedSearchForm.style.display = "none";
+        }
+    });
 
-        "daysOfWeek": [
-            "Paz",
-    "Pzt",
-    "Sal",
-    "Çar",
-    "Per",
-    "Cum",
-    "Cmt",
-        ],
-        "monthNames": [
-            "Ocak",
-            "Şubat",
-            "Mart",
-            "Nisan",
-            "Mayıs",
-            "Haziran",
-            "Temmuz",
-            "Ağustos",
-            "Eylül",
-            "Ekim",
-            "Kasım",
-            "Aralık"
-        ],
-        "firstDay": 0
-    }
-  });
-});
+    </script>
+<script>
+    document.getElementById('sort-option').addEventListener('change', function() {
+        var villaIds = [
+        {% for villa, min_price in context_dict %}
+            {{ villa.id }},
 
+        {% endfor %}
+    ];
+            var prices = [
+        {% for villa, min_price in context_dict %}
+            {{ min_price }},
+
+        {% endfor %}
+    ];
+
+
+        
+        var selectedOption = this.value;
+        var url = "{% url 'villa_list' %}?sort_option=" + selectedOption;
+                // Get the current URL and its search parameters
+        var queryParams = new URLSearchParams(window.location.search);
+
+        var default_price;
+        // Check if the 'default_price' parameter exists and its value is 'true'
+        if (queryParams.has('default_price') && queryParams.get('default_price') === 'true') {
+            // 'default_price' parameter exists and its value is 'true'
+            default_price = "true";
+            // Do something based on this condition
+        }
+        else{
+        default_price="false";
+        }
+
+        // Encode villaIds as a comma-separated string
+        var villaIdsString = villaIds.join(',');
+        url += "&villa_ids=" + encodeURIComponent(villaIdsString);
+        url += "&default_price=" + default_price;
+        url +="&prices=" + encodeURIComponent(prices);
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Assuming your villa list is rendered inside a div with id="villa-list"
+                var villaListContainer = document.getElementById('villa-list');
+
+                villaListContainer.innerHTML = data.html;
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+</script>
+
+    <script>
+    $(document).ready(function(){
+        $('#main-form').submit(function(e){
+            e.preventDefault(); // Prevent default form submission
+
+            var selectedTypes = [];
+            $('.filter-checkbox:checked').each(function(){
+                selectedTypes.push($(this).val());
+            });
+
+            // Get the value of num_people
+            var numPeople = $('#num_people').val();
+            var dateTimesHome = $('#checkin-date').val();
+
+            // Get the value of selected_zone
+            var selectedZone = $('#zone_selection').val();
+
+            // Get the value of all_villas
+            var allVillas = $('input[name="all_villas"]').val();
+            // Generate query parameters
+            var queryParams = $.param({
+                type: selectedTypes,
+                num_people: numPeople,
+                selected_zone: selectedZone,
+                all_villas: allVillas,
+                datetimes_home:dateTimesHome,
+            });
+
+            // Redirect to the URL with query parameters
+            window.location.href = "{% url 'villas' %}?" + queryParams;
+        });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $('#filter-form').submit(function(e){
+            e.preventDefault(); // Prevent default form submission
+
+            var selectedTypes = [];
+            $('.filter-checkbox:checked').each(function(){
+                selectedTypes.push($(this).val());
+            });
+
+            // Get the value of num_people
+            var numPeople = $('#num_people').val();
+            var dateTimesHome = $('#checkin-date').val();
+
+            // Get the value of selected_zone
+            var selectedZone = $('#zone_selection').val();
+
+            // Get the value of all_villas
+            var allVillas = $('input[name="all_villas"]').val();
+            // Generate query parameters
+            var queryParams = $.param({
+                type: selectedTypes,
+                num_people: numPeople,
+                selected_zone: selectedZone,
+                all_villas: allVillas,
+                datetimes_home:dateTimesHome,
+            });
+
+            // Redirect to the URL with query parameters
+            window.location.href = "{% url 'villas' %}?" + queryParams;
+        });
+    });
+</script>
+<script>
+
+// Get the specific element with a unique ID
+var element = document.getElementById("unique-date-picker");
+
+// Attach onchange event listener to the specific element
+element.onchange = function() {
+    // Get the value of the specific element
+    var value = this.value;
+    // Create a new XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
+
+    // Prepare the request
+    xhr.open('POST', "{% url 'villa_request' %}");
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');  // Add CSRF token if needed
+
+    // Define what happens on successful data submission
+    xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+            // Request was successful, do something with the response
+                            var requestSummary = document.getElementById('request-summary');
+                            var jsonResponse = JSON.parse(xhr.responseText);
+
+                            // Access the html property of the parsed JSON object
+                            var htmlContent = jsonResponse.html;
+
+                            requestSummary.innerHTML =htmlContent ;
+
+console.log('Request successful:', xhr.responseText);
+        } else {
+            // Request failed
+            console.error('Request failed:', xhr.status);
+        }
+    };
+
+    // Define what happens in case of an error
+    xhr.onerror = function () {
+        console.error('Request failed: Network error');
+    };
+
+    // Send the request with the value data
+    xhr.send(JSON.stringify({ value: value,villa_id:{{villa.id}} }));
+
+};
 </script>
 
 </body>
