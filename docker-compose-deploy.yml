@@ -35,8 +35,11 @@ services:
       - vivi_tourism
     ports:
       - 80:8000
+      - 443:443
     volumes:
       - static-data:/vol/static
+      - /etc/ssl/certs:/etc/ssl/certs  # Mount SSL directory into the container
+
 
 volumes:
   postgres-data:
