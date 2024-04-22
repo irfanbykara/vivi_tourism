@@ -1,0 +1,76 @@
+
+<div id="tour-list" class="row">
+    {% for tour in tours %}
+    <div class="col-md-4 mb-4">
+        <div class="hotel-view bg-white radius-20">
+            <a href="{% url 'tour_detail' tour.id %}" class="hotel-view-thumb hotel-view-grid-thumb bg-image">
+                <img src="{{ tour.avatar.url }}" alt="{{ tour.name }}">
+            </a>
+            <div class="hotel-view-contents">
+                <div class="hotel-view-contents-header">
+<h3 class="hotel-view-contents-title">
+        <a href="{% url 'tour_detail' tour.id  %}">{{ tour.name }}</a>
+
+</h3>
+                    <div class="hotel-view-contents-location mt-2">
+                        <span class="hotel-view-contents-location-icon"><i class="las la-map-marker-alt"></i></span>
+                        <span class="hotel-view-contents-location-para">{{ tour.address }}</span>
+                    </div>
+                </div>
+                <div class="hotel-view-contents-middle">
+                    <div class="hotel-view-contents-flex">
+                        {% if tour.has_wifi %}
+                        <div class="hotel-view-contents-icon d-flex gap-1">
+                            <span><i class="las la-wifi" title="Wifi"></i></span>
+                            <p class="hotel-view-contents-icon-title flex-fill"></p>
+                        </div>
+                        {% endif %}
+                                        {% if tour.has_shuttle %}
+
+                                        <div class="hotel-view-contents-icon d-flex gap-1">
+                                            <span> <i class="las la-shuttle-van" title="Servis"></i> </span>
+                                            <p class="hotel-view-contents-icon-title flex-fill"> </p>
+                                        </div>
+                                        {% endif %}
+                                        {% if tour.has_lunch %}
+
+                                        <div class="hotel-view-contents-icon d-flex gap-1">
+                                            <span> <i class="las la-utensils" title="Yemek"></i> </span>
+                                            <p class="hotel-view-contents-icon-title flex-fill">  </p>
+                                        </div>
+                                        {% endif %}
+                                        {% if tour.has_guide %}
+
+                                        <div class="hotel-view-contents-icon d-flex gap-1">
+                                            <span> <i class="las la-address-book" title="Rehber"></i> </span>
+                                            <p class="hotel-view-contents-icon-title flex-fill">  </p>
+                                        </div>
+                                        {% endif %}
+
+                    </div>
+                </div>
+                <div class="hotel-view-contents-bottom">
+                    <div class="hotel-view-contents-bottom-flex">
+                        <div class="hotel-view-contents-bottom-contents">
+                            <h4 class="hotel-view-contents-bottom-title">
+                                {% if tour.currency == "try" %}
+                                ₺
+                                {% elif tour.currency == "usd" %}
+                                                                $
+                                {% elif tour.currency == "eur" %}
+                                                                €
+                                {% endif %}
+                                {{ tour.default_price }}<sub>'den başlayan</sub></h4>
+                            <p class="hotel-view-contents-bottom-para">{{tour.tour_duration}}
+</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

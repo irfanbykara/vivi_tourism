@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import Villa,VillaImages,PriceInterval,Reservation,Blog,Zone,Province,Type
+from .models import Villa, VillaImages, PriceInterval, Reservation, Blog, Zone, Province, Type, TourType, Tour, \
+    TourPriceInterval, TourImages,Yatch,YatchPriceInterval,YatchImages,YatchPort,YatchType,YatchReservation,YatchFeatureCategories,YatchFeature,\
+    Services
 from .consts import *
 from django.http import JsonResponse
 from datetime import datetime,timedelta
@@ -34,6 +36,7 @@ def home(request):
     if request.method == "POST":
         data = request.POST
         num_people=data.get("num_people")
+        print(num_people)
 
         all_villas = all_villas.filter(capacity__gte=int(num_people))
         zone_id = data.get("zone_selection")
@@ -48,6 +51,7 @@ def home(request):
 
         raw_dates = data.get("datetimes_home")
         raw_dates = raw_dates.split(" - ")
+
 
         datetime_check_in,datetime_check_out = raw_date_handler(raw_dates)
         occupying_reservations = Reservation.objects.all()
@@ -83,7 +87,6 @@ def home(request):
                 min_price = villa.default_price
             context_dict[villa] = min_price
 
-            context_dict[villa] = min_price
 
         context = {"context_dict":context_dict.items(),"provinces":provinces,"all_types":all_types,
                    "raw_dates":raw_dates,"num_people":num_people,"selected_zone_id":zone_id}
@@ -159,7 +162,6 @@ def villas(request):
     selected_types_encoded = request.GET.getlist('type[]')
     num_people = request.GET.get("num_people") if request.GET.get("num_people")!=None else 1
     selected_zone = request.GET.get("selected_zone")
-
 
     all_villas = all_villas.filter(capacity__gte=num_people)
     if selected_zone:
@@ -245,8 +247,6 @@ def villas(request):
                 min_price = villa.default_price
         non_popular_min_prices.append(min_price)
 
-
-
     # Combine popular and non-popular villas and their minimum prices
     context_dict = {}
     for villa, min_price in zip(popular_villas, popular_min_prices):
@@ -256,7 +256,7 @@ def villas(request):
 
     # Store the minimum prices in the dictionary
     context = {"context_dict": context_dict.items(),"provinces":provinces,"all_types":all_types,"selected_types":selected_types_decoded,
-               "selected_zone_id":selected_zone,"raw_dates":raw_dates}
+               "selected_zone_id":selected_zone,"raw_dates":raw_dates,"num_people":num_people}
     return render(request, 'main/villas.html', context)
 
 
@@ -290,7 +290,7 @@ def villa_detail(request, pk):
                 sender_email = request.POST.get("email")
                 message = request.POST.get("message")
                 phone_number = request.POST.get("tel")
-                requested_dates = request.POST.get("datetimes")
+                requested_dates = request.POST.get("datetimes_home_disabled")
                 villa_name = villa.name
                 message_string = subject + " kişisinden " + requested_dates + " tarih aralığında " + villa_name + " tesisi için bir rezervasyon talebiniz var.\nİletişim Bilgileri:\n" + sender_email + "\n" + phone_number + "\nMesaj:\n" + message
                 EmailMessage(subject, message_string, email_from, recipient_list, connection=connection).send()
@@ -331,13 +331,42 @@ def villa_detail(request, pk):
     villa.long = str(villa.long).replace(",",".")
 
     disabled_days = get_disabled_days(reservations)
+    cancellation_policies = villa.cancellation_policy.all()
+    internal_villa_features = villa.features.filter(is_internal=True)
+
+    external_villa_features = villa.features.filter(is_internal=False)
+
+    external_villa_features_dict = {}
+    internal_villa_features_dict = {}
+
+    for item in internal_villa_features:
+        try:
+            print(internal_villa_features_dict[item.villa_feature_categories.name])
+        except KeyError:
+            internal_villa_features_dict[item.villa_feature_categories.name] = []
+        internal_villa_features_dict[item.villa_feature_categories.name].append(item.name)
+
+    for item in external_villa_features:
+        try:
+            print(external_villa_features_dict[item.villa_feature_categories.name])
+        except KeyError:
+            external_villa_features_dict[item.villa_feature_categories.name] = []
+        external_villa_features_dict[item.villa_feature_categories.name].append(item.name)
+
+
+
+
 
     date_list = dumps(disabled_days)
 
-
     villa_images = VillaImages.objects.filter(villa=villa)
 
-    context = {'villa': villa, "villa_images": villa_images, "price_intervals": price_intervals, "date_list": date_list, "current_price": price}
+    context = {'villa': villa, "villa_images": villa_images, "price_intervals": price_intervals,
+               "cancellation_policies":cancellation_policies,"internal_villa_features":internal_villa_features,
+               "external_villa_features":external_villa_features,
+               "date_list": date_list, "current_price": price,
+               "external_villa_features_dict":external_villa_features_dict.items(),
+               "internal_villa_features_dict":internal_villa_features_dict.items()}
 
     return render(request, 'main/villa_detail.html', context )
 
@@ -490,18 +519,259 @@ def sort_villas(request):
     # Return the sorted villa data as JSON response
     return JsonResponse({'html': html})
 
+def sort_tours(request):
+    # Extract parameters from the request
+    tour_ids = request.GET.getlist('tour_ids')
+    print(tour_ids)
+    print("Hello world!")
+    tour_ids = tour_ids[0].split(",")
+
+    tour_ids = [int(id) for id in tour_ids]
+    prices = request.GET.get('prices')
+    prices = [int(price) for price in prices.split(",")]
+
+    print(tour_ids,prices)
+    # Sort villa_ids and prices based on prices
+    sorted_data = sorted(zip(tour_ids, prices), key=lambda x: x[1])
+
+    # Reconstruct dictionary with sorted data
+    sorted_dict = {tour_id: price for tour_id, price in sorted_data}
+    # Retrieve the villas corresponding to the villa_ids
+    tours = Tour.objects.filter(id__in=tour_ids)
+
+    # Annotate each villa with the provided prices
+    for index, tour in enumerate(tours):
+        tour.price = prices[index]
+
+    # Get the sort option from the request
+    sort_option = request.GET.get('sort_option', 'popularity')
+
+    # Define a case expression to prioritize popular villas
+    popular_priority = Case(
+        When(is_popular=True, then=Value(0)),  # Prioritize popular villas
+        default=Value(1),  # Use default value for non-popular villas
+        output_field=BooleanField()
+    )
+
+    # Sort the villas based on the selected option
+    if sort_option == 'popularity':
+        tours = tours.order_by(popular_priority)
+    elif sort_option == 'price_asc':
+        # Sort villas based on prices in ascending order
+        sorted_data = sorted(zip(tour_ids, prices), key=lambda x: x[1])
+        sorted_dict = {tour_id: price for tour_id, price in sorted_data}
+        tours = [Tour.objects.get(id=tour_id) for tour_id in sorted_dict.keys()]
+    elif sort_option == 'price_desc':
+        # Sort villas based on prices in descending order
+        sorted_data = sorted(zip(tour_ids, prices), key=lambda x: x[1], reverse=True)
+        sorted_dict = {tour_id: price for tour_id, price in sorted_data}
+        tours = [Tour.objects.get(id=tour_id) for tour_id in sorted_dict.keys()]
+
+
+    # Reconstruct dictionary with sorted data
+    sorted_dict = {tour_id: price for tour_id, price in sorted_data}
+    # Prepare context dictionary
+    context_dict = {}
+    for tour in tours:
+        context_dict[tour] = sorted_dict.get(tour.id)  # Access price from sorted_dict using villa id
+
+    # Render the template with the sorted villa data
+    context = {"tours": tours}
+    print(context)
+    html = render_to_string('main/partial_tour_list.html', context)
+
+    # Return the sorted villa data as JSON response
+    return JsonResponse({'html': html})
+
 def yatchs(request):
 
-    page_name = "yatch"
-    context = {"page_name":page_name}
-    return render(request, 'main/coming_soon.html', context )
+    all_yatchs = Yatch.objects.all().order_by()
+    all_ports = YatchPort.objects.all()
+    all_types = YatchType.objects.all()
+
+    selected_types_encoded = request.GET.getlist("type[]")
+    selected_types_decoded = None
+    if selected_types_encoded:
+        selected_types_decoded = [unquote(type_name) for type_name in selected_types_encoded]
+
+    # Retrieve the query parameter 'type' from the URL
+    if selected_types_decoded!=None:
+        for type_name in selected_types_decoded:
+            all_yatchs = all_yatchs.filter(type__name=type_name)
+
+    num_people = request.GET.get("num_people")
+    selected_port = request.GET.get("selected_port")
+    raw_dates = request.GET.get("datetimes_home")
+
+    if request.method == "POST":
+        data = request.POST
+        port_selection = data.get("port_selection")
+        if port_selection == "all_ports":
+            pass
+        else:
+            yatch_port = YatchPort.objects.get(pk=port_selection)
+            port_selection = int(port_selection)
+            all_yatchs = all_yatchs.filter(yatch_port__name=yatch_port)
+
+        num_people=data.get("num_people")
+
+        all_yatchs = all_yatchs.filter(capacity__gte=int(num_people))
+        raw_dates = data.get("datetimes_home")
+        if raw_dates != None:
+            raw_dates = raw_dates.split(" - ")
+
+        datetime_check_in,datetime_check_out = raw_date_handler(raw_dates)
+        occupying_reservations = YatchReservation.objects.all()
+        occupied_yatchs = []
+        occupied_reservations = []
+        delta = timedelta(days=1)
+        while datetime_check_in < datetime_check_out:
+            occupied_reservations += occupying_reservations.filter(start_date__lte=datetime_check_in, end_date__gt=datetime_check_in)
+            datetime_check_in += delta
+        yatchs_to_show = []
+        for item in occupied_reservations:
+            occupied_yatchs.append(item.yatch)
+        for yatch in all_yatchs:
+            if yatch not in occupied_yatchs:
+                yatchs_to_show.append(yatch)
+        context_dict = {}
+
+        for yatch in yatchs_to_show:
+            price_intervals = YatchPriceInterval.objects.filter(yatch=yatch, start_date__lte=datetime_check_out,
+                                                           end_date__gte=datetime_check_in).first()
+            if price_intervals!=None:
+                shown_price = price_intervals.price
+            else:
+                shown_price = yatch.default_price
+            context_dict[yatch] = shown_price
+        print(len(yatchs_to_show))
+        all_yatchs = context_dict.keys()
+        prices = context_dict.values()
+        context = {"all_yatchs":all_yatchs,"prices":prices,"all_types":all_types,
+                   "raw_dates":raw_dates,"num_people":num_people,"selected_port":port_selection,"all_ports":all_ports,
+                   "context_dict":context_dict.items(),
+                   "selected_types":selected_types_decoded,}
+        return render(request, 'main/yatchs.html', context )
+
+
+    context_dict = {}
+    for yatch in all_yatchs:
+        context_dict[yatch] = yatch.default_price
+    if raw_dates!=None:
+        raw_dates = raw_dates.split(" - ")
+    context = {"all_yatchs":all_yatchs,"all_ports":all_ports,"all_types":all_types,
+               "raw_dates":raw_dates,"num_people":num_people,"selected_port":selected_port,
+               "selected_types":selected_types_decoded,"context_dict":context_dict.items(),}
+    return render(request, 'main/yatchs.html', context )
 
 
 def tours(request):
 
-    page_name = "tour"
-    context = {"page_name":page_name}
-    return render(request, 'main/coming_soon.html', context )
+    # page_name = "tour"
+    # context = {"page_name":page_name}
+    selected_types_encoded = request.GET.getlist('type[]')
+
+    all_types = TourType.objects.all()
+    selected_types_decoded = None
+    if selected_types_encoded:
+        selected_types_decoded = [unquote(type_name) for type_name in selected_types_encoded]
+
+    all_tours = Tour.objects.all().order_by('-default_price')
+
+    # Retrieve the query parameter 'type' from the URL
+    if selected_types_decoded!=None:
+        for type_name in selected_types_decoded:
+            all_tours = all_tours.filter(type__name=type_name)
+
+    context = {"all_types":all_types,"tours":all_tours,"selected_types":selected_types_decoded}
+    return render(request, 'main/tours.html', context )
+
+
+def tour_detail(request, pk):
+
+    tour = Tour.objects.get( id=pk )
+    price_intervals = TourPriceInterval.objects.filter(tour=tour)
+
+    tour_images = TourImages.objects.filter(tour=tour)
+
+    context = {'tour': tour, "tour_images": tour_images, "price_intervals": price_intervals, }
+
+    return render(request, 'main/tour_detail.html', context )
+def yatch_detail(request, pk):
+
+    if request.method == "POST":
+
+        yatch = Yatch.objects.get( id=pk )
+
+        try:
+            host = os.environ.get('EMAIL_HOST')
+            port = os.environ.get('EMAIL_PORT')
+            username = os.environ.get("EMAIL_HOST_USER")
+            password = os.environ.get("PASSWORD"),
+            use_tls = os.environ.get('EMAIL_USE_TLS')
+
+            with get_connection(
+                    host=host,
+                    port=port,
+                    username=username,
+                    password=password[0],
+                    use_tls=use_tls,
+            ) as connection:
+
+                subject = request.POST.get("name") + ' ' + request.POST.get("surname")
+                email_from = os.environ.get('EMAIL_HOST_USER')
+                recipient_list = ["erol_songur@hotmail.com",]
+
+                sender_email = request.POST.get("email")
+                message = request.POST.get("message")
+                phone_number = request.POST.get("tel")
+                requested_dates = request.POST.get("datetimes_home_disabled")
+                yatch_name = yatch.name
+                message_string = subject + " kişisinden " + requested_dates + " tarih aralığında " + yatch_name + " yatı için bir rezervasyon talebiniz var.\nİletişim Bilgileri:\n" + sender_email + "\n" + phone_number + "\nMesaj:\n" + message
+                EmailMessage(subject, message_string, email_from, recipient_list, connection=connection).send()
+                print("Email sent.")
+                popup_text = yatch.name + " adlı yat için rezervasyon talebiniz iletildi! Ekibimiz en kısa zamanda sizinle iletişime geçecek!"
+            messages.success(request, popup_text)
+            return redirect('yatch_detail', pk=pk)
+
+        except Exception as e:
+            print(e)
+            messages.error(request, "Mesajınız gönderilemedi. Lütfen tekrar deneyin.")
+
+
+
+    yatch = Yatch.objects.get( id=pk )
+    price_intervals = YatchPriceInterval.objects.filter(yatch=yatch)
+    services = yatch.services.all()
+    if request.GET.get("price")!=None:
+        price = request.GET.get("price")
+    else:
+        price = yatch.default_price
+
+    # Find the price interval that includes the current date
+    reservations = YatchReservation.objects.filter(yatch=yatch, completed=True, end_date__gte=datetime.now())
+
+    disabled_days = get_disabled_days(reservations)
+
+    date_list = dumps(disabled_days)
+
+    yatch_images = YatchImages.objects.filter(yatch=yatch)
+    features_list = yatch.features.all()
+    features_dict = {}
+    for feature in features_list:
+        category_name = feature.yatch_feature_categories.name
+        if category_name not in features_dict:
+            features_dict[category_name] = []  # Initialize with an empty list if key doesn't exist
+        features_dict[category_name].append(feature.name)
+
+    yatch_attributes = get_yatch_attributes(yatch)
+    context = {'yatch': yatch, "yatch_images": yatch_images,"services":services, "price_intervals": price_intervals, "date_list": date_list, "current_price": price,
+               "features_dict":features_dict.items(),"yatch_attributes_dict":yatch_attributes.items()}
+
+    return render(request, 'main/yatch_detail.html', context )
+    # context = {'yatch': yatch, "yatch_images": yatch_images, "price_intervals": price_intervals, }
+    #
+    # return render(request, 'main/yatch_detail.html', context )
 
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
@@ -540,7 +810,9 @@ def admin_login(request):
 def admin_dashboard(request):
 
     villas = Villa.objects.all()
-    context = {"villas":villas}
+    tours = Tour.objects.all()
+    yatchs = Yatch.objects.all()
+    context = {"villas":villas,"tours":tours,"yatchs":yatchs}
     if request.POST:
         try:
             villa_id = request.POST.get('villa')
@@ -574,6 +846,16 @@ def caravans(request):
     context = {"page_name":page_name}
 
     return render(request, 'main/coming_soon.html',context )
+
+
+def privacy_agreement(request):
+
+
+    return render(request, 'main/privacy_agreement.html' )
+
+def cancellation_policy(request):
+
+    return render(request, 'main/cancellation_policy.html' )
 
 import json
 def villa_request(request):
@@ -624,3 +906,129 @@ def villa_request(request):
             return JsonResponse({'error': 'Invalid JSON'}, status=400)
     else:
         return JsonResponse({'error': 'Invalid request'}, status=400)
+
+def yatch_request(request):
+
+    if request.method == 'POST':
+        try:
+            # Parse the JSON data from the request body
+            data = json.loads(request.body)
+            selected_date = data.get('value')
+            yatch_id = data.get('yatch_id')
+            yatch = Yatch.objects.get(id=yatch_id)
+            raw_dates = selected_date.split(" - ")
+            datetime_check_in, datetime_check_out = raw_date_handler(raw_dates)
+
+            # Process the selected date
+            # Calculate the difference in days
+            num_nights = (datetime_check_out - datetime_check_in).days
+            # Initialize total price
+            total_price = 0
+
+            # Iterate over each day between check-in and check-out dates
+            current_date = datetime_check_in
+            while current_date < datetime_check_out:
+                # Check if there is a price interval for the current day
+                price_interval = YatchPriceInterval.objects.filter(
+                    yatch=yatch,
+                    start_date__lte=current_date,
+                    end_date__gte=current_date
+                ).first()
+
+                # If a price interval exists, use its price
+                if price_interval:
+                    total_price += price_interval.price
+                else:
+                    # Use the default price of the villa if no price interval exists
+                    total_price += yatch.default_price
+
+                # Move to the next day
+                current_date += timedelta(days=1)
+
+            context = {"num_nights":num_nights,"total_price":total_price}
+            html = render_to_string('main/request_summary.html', context)
+
+            return JsonResponse({'html': html})
+
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid request'}, status=400)
+
+def sort_yatchs(request):
+    # Extract parameters from the request
+    yatch_ids = request.GET.getlist("yatch_ids")
+    yatch_ids = yatch_ids[0].split(",")
+    yatch_ids = [int(id) for id in yatch_ids]
+    prices = request.GET.get('prices')
+    prices = [int(price) for price in prices.split(",")]
+
+    # Sort villa_ids and prices based on prices
+    sorted_data = sorted(zip(yatch_ids, prices), key=lambda x: x[1])
+
+    # Reconstruct dictionary with sorted data
+    sorted_dict = {yatch_id: price for yatch_id, price in sorted_data}
+    # Retrieve the villas corresponding to the villa_ids
+    yatchs = Yatch.objects.filter(id__in=yatch_ids)
+    # Annotate each villa with the provided prices
+    for index, yatch in enumerate(yatchs):
+        yatch.price = prices[index]
+
+    # Get the sort option from the request
+    sort_option = request.GET.get('sort_option', 'popularity')
+
+    # Define a case expression to prioritize popular villas
+    popular_priority = Case(
+        When(is_popular=True, then=Value(0)),  # Prioritize popular villas
+        default=Value(1),  # Use default value for non-popular villas
+        output_field=BooleanField()
+    )
+
+    # Sort the villas based on the selected option
+    if sort_option == 'popularity':
+        yatchs = yatchs.order_by(popular_priority)
+    elif sort_option == 'price_asc':
+        # Sort villas based on prices in ascending order
+        sorted_data = sorted(zip(yatch_ids, prices), key=lambda x: x[1])
+        sorted_dict = {yatchs_id: price for yatchs_id, price in sorted_data}
+        yatchs = [Yatch.objects.get(id=yatch_id) for yatch_id in sorted_dict.keys()]
+    elif sort_option == 'price_desc':
+        # Sort villas based on prices in descending order
+        sorted_data = sorted(zip(yatch_ids, prices), key=lambda x: x[1], reverse=True)
+        sorted_dict = {yatch_id: price for yatch_id, price in sorted_data}
+        yatchs = [Yatch.objects.get(id=yatch_id) for yatch_id in sorted_dict.keys()]
+
+
+    # Reconstruct dictionary with sorted data
+    sorted_dict = {yatch_id: price for yatch_id, price in sorted_data}
+    # Prepare context dictionary
+    context_dict = {}
+    for yatch in yatchs:
+        context_dict[yatch] = sorted_dict.get(yatch.id)  # Access price from sorted_dict using villa id
+        yatch.default_price = sorted_dict.get(yatch.id)
+
+    # Render the template with the sorted villa data
+    context = {"context_dict":context_dict.items()}
+    html = render_to_string('main/partial_yatch_list.html', context)
+
+    # Return the sorted villa data as JSON response
+    return JsonResponse({'html': html})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-contents">
-                        <h4 class="breadcrumb-contents-title"> Villa Detayları </h4>
+                        <h4 class="breadcrumb-contents-title"> Yat Detayları </h4>
                     </div>
                 </div>
             </div>
@@ -36,9 +36,9 @@
 
                             <div class="hotel-view-contents">
                                 <div class="hotel-view-contents-header">
-<div id="CarouselWithControls" class="carousel slide" data-ride="carousel">
+<div id="CarouselWithControls" class="carousel slide carousel-with-thumbnails" data-ride="carousel">
   <div class="carousel-inner">
-    {% for item in villa_images %}
+    {% for item in yatch_images %}
       <div class="carousel-item {% if forloop.first %} active {% endif %}" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="{{ forloop.counter }}">
         <img src="{{ item.image.url }}" class="d-block w-100">
       </div>
@@ -61,7 +61,7 @@
       <div class="modal-body">
         <div id="carouselModal" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
-            {% for item in villa_images %}
+            {% for item in yatch_images %}
               <div class="carousel-item {% if forloop.first %} active {% endif %}">
                 <img src="{{ item.image.url }}" class="d-block w-100">
               </div>
@@ -80,171 +80,162 @@
     </div>
   </div>
 </div>
-                                    <h3 class="hotel-view-contents-title"> {{villa.name}} </h3>
+
+                                    <h3 class="hotel-view-contents-title"> {{yatch.name}} </h3>
                                     <div class="hotel-view-contents-location mt-2">
                                         <span class="hotel-view-contents-location-icon"> <i class="las la-map-marker-alt"></i> </span>
-                                        <span class="hotel-view-contents-location-para"> {{villa.address}}  </span>
+                                        <span class="hotel-view-contents-location-para"> {{yatch.yatch_port}}  </span>
                                     </div>
                                 </div>
-                                <div class="hotel-view-contents-middle">
-                                    <div class="hotel-view-contents-flex">
-                                        {% if villa.has_parking %}
-                                        <div class="hotel-view-contents-icon d-flex gap-1">
-                                            <span> <i class="las la-parking"></i> </span>
-                                            <p class="hotel-view-contents-icon-title flex-fill"> Park Alanı </p>
-                                        </div>
-                                        {% endif %}
-                                        {% if villa.has_wifi %}
-
-                                        <div class="hotel-view-contents-icon d-flex gap-1">
-                                            <span> <i class="las la-wifi"></i> </span>
-                                            <p class="hotel-view-contents-icon-title flex-fill"> Wifi </p>
-                                        </div>
-                                        {% endif %}
-                                        {% if villa.has_breakfast %}
-
-                                        <div class="hotel-view-contents-icon d-flex gap-1">
-                                            <span> <i class="las la-coffee"></i> </span>
-                                            <p class="hotel-view-contents-icon-title flex-fill"> Kahvaltı </p>
-                                        </div>
-                                        {% endif %}
-                                        {% if villa.has_cleaning_service %}
-
-                                        <div class="hotel-view-contents-icon d-flex gap-1">
-                                            <span> <i class="las la-quidditch"></i> </span>
-                                            <p class="hotel-view-contents-icon-title flex-fill"> Temizlik </p>
-                                        </div>
-                                        {% endif %}
-                                {% if villa.has_pool %}
-
-                                        <div class="hotel-view-contents-icon d-flex gap-1">
-                                            <span> <i class="las la-swimming-pool"></i> </span>
-                                            <p class="hotel-view-contents-icon-title flex-fill"> Havuz </p>
-                                        </div>
-                                        {% endif %}
-                                        {% if villa.has_reception %}
-
-                                        <div class="hotel-view-contents-icon d-flex gap-1">
-                                            <span> <i class="las la-receipt"></i> </span>
-                                            <p class="hotel-view-contents-icon-title flex-fill"> Resepsiyon </p>
-                                        </div>
-                                        {% endif %}
+<!--                                <div class="hotel-view-contents-middle">-->
+<!--                                    <div class="hotel-view-contents-flex">-->
+<!--                                        {% if villa.has_parking %}-->
+<!--                                        <div class="hotel-view-contents-icon d-flex gap-1">-->
+<!--                                            <span> <i class="las la-parking"></i> </span>-->
+<!--                                            <p class="hotel-view-contents-icon-title flex-fill"> Park Alanı </p>-->
+<!--                                        </div>-->
+<!--                                        {% endif %}-->
+<!--                                        {% if villa.has_wifi %}-->
 
 <!--                                        <div class="hotel-view-contents-icon d-flex gap-1">-->
-<!--                                            <span> <i class="las la-dumbbell"></i> </span>-->
-<!--                                            <p class="hotel-view-contents-icon-title flex-fill"> Gym </p>-->
+<!--                                            <span> <i class="las la-wifi"></i> </span>-->
+<!--                                            <p class="hotel-view-contents-icon-title flex-fill"> Wifi </p>-->
 <!--                                        </div>-->
-                                    </div>
-                                </div>
+<!--                                        {% endif %}-->
+<!--                                        {% if villa.has_breakfast %}-->
+
+<!--                                        <div class="hotel-view-contents-icon d-flex gap-1">-->
+<!--                                            <span> <i class="las la-coffee"></i> </span>-->
+<!--                                            <p class="hotel-view-contents-icon-title flex-fill"> Kahvaltı </p>-->
+<!--                                        </div>-->
+<!--                                        {% endif %}-->
+<!--                                        {% if villa.has_cleaning_service %}-->
+
+<!--                                        <div class="hotel-view-contents-icon d-flex gap-1">-->
+<!--                                            <span> <i class="las la-quidditch"></i> </span>-->
+<!--                                            <p class="hotel-view-contents-icon-title flex-fill"> Temizlik </p>-->
+<!--                                        </div>-->
+<!--                                        {% endif %}-->
+<!--                                {% if villa.has_pool %}-->
+
+<!--                                        <div class="hotel-view-contents-icon d-flex gap-1">-->
+<!--                                            <span> <i class="las la-swimming-pool"></i> </span>-->
+<!--                                            <p class="hotel-view-contents-icon-title flex-fill"> Havuz </p>-->
+<!--                                        </div>-->
+<!--                                        {% endif %}-->
+<!--                                        {% if villa.has_reception %}-->
+
+<!--                                        <div class="hotel-view-contents-icon d-flex gap-1">-->
+<!--                                            <span> <i class="las la-receipt"></i> </span>-->
+<!--                                            <p class="hotel-view-contents-icon-title flex-fill"> Resepsiyon </p>-->
+<!--                                        </div>-->
+<!--                                        {% endif %}-->
+
+<!--&lt;!&ndash;                                        <div class="hotel-view-contents-icon d-flex gap-1">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <span> <i class="las la-dumbbell"></i> </span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <p class="hotel-view-contents-icon-title flex-fill"> Gym </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
                                 <div class="hotel-view-contents-bottom">
                                     <div class="hotel-view-contents-bottom-flex">
                                         <div class="hotel-view-contents-bottom-contents">
                                             <h4 class="hotel-view-contents-bottom-title">
-                                {% if villa.currency == "try" %}
+                                {% if yatch.currency == "try" %}
                                 ₺
-                                {% elif villa.currency == "usd" %}
+                                {% elif yatch.currency == "usd" %}
                                                                 $
-                                {% elif villa.currency == "eur" %}
+                                {% elif yatch.currency == "eur" %}
                                                                 €
                                 {% endif %}
+
                                                 {{current_price}} <sub>/Gecelik</sub> </h4>
-                                            <p class="hotel-view-contents-bottom-para"> ({{villa.capacity}} kişi, {{villa.num_room}} oda, {{villa.num_bathroom}} banyo) </p>
+                                            <p class="hotel-view-contents-bottom-para"> ({{yatch.capacity}} kişi, {{yatch.num_room}} kabin, {{yatch.num_bathroom}} banyo) </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="details-contents-tab">
                                 <ul class="tabs details-tab details-tab-border">
-                                    <li class="active" data-tab="about"> Villa Hakkında </li>
+                                    <li class="active" data-tab="about"> Yat Hakkında </li>
                                 </ul>
 
                                 <div id="about" class="tab-content-item active">
                                     <div class="about-tab-contents">
-<!--                                    <p class="about-tab-contents-para"> {{ villa.explanation|linebreaks }} </p>-->
-                                    <p class="about-tab-contents-para"> {{ villa.explanation_rich|safe }} </p>
-                                    </div>
-                                </div>
-                                                                <div class="dashboard-reservation">
+<!--                                        <p class="about-tab-contents-para"> {{ villa.explanation|linebreaks }} </p>-->
+                                        <p class="about-tab-contents-para"> {{ yatch.explanation|safe }} </p>
 
-                        <div class="single-reservation bg-white base-padding">
+                                    </div>
+
+
+                                </div>
+                                <div class="dashboard-reservation">
+                        <div class="single-reservation bg-white base-padding show open">
                             <div class="single-reservation-expandIcon"> <i class="las la-angle-down"></i> </div>
                             <div class="single-reservation-head">
                                 <div class="single-reservation-flex">
                                     <div class="single-reservation-content">
-                                        <h5 class="single-reservation-content-title"> İç Özellikler </h5>
+                                        <h5 class="single-reservation-content-title"> Hizmetler </h5>
 <!--                                        <span class="single-reservation-content-id"> #824409583563 </span>-->
                                     </div>
                                     <div class="single-reservation-btn">
-                                        <a href="javascript:void(0)" class="dash-btn btn-pending"> {{internal_villa_features_dict|length}} özellik </a>
+                                        <a href="javascript:void(0)" class="dash-btn btn-pending"> {{services|length}} hizmet </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="single-reservation-inner">
+                            <div class="single-reservation-inner" style="">
 
                                 <div class="single-reservation-item">
                                     <div class="single-reservation-details">
-                                                             {% for feature_category,features in internal_villa_features_dict %}
-<p></p>
+                                        {% for service in services %}
 
-                                                                                <div class="single-reservation-details-item col-lg-6 col-md-12">
-                                            <span class="single-reservation-details-subtitle"> {{feature_category}} </span>
-                                                                    {% for feature in features %}
-
-                                            <h5 class="single-reservation-details-title"> {{feature}} </h5>
-                                            {% endfor %}
+                                        <p></p>
+                                        <div class="single-reservation-details-item col-lg-6 col-md-12">
+                                            <h5 class="single-reservation-details-subtitle"> {{service.name}} </h5>
+                                            <span class="single-reservation-details-title"> {{service.explanation}} </span>
                                         </div>
 
                                         {% endfor %}
-
-
                                     </div>
                                 </div>
 
 
                             </div>
                         </div>
-
-                                                                                            <div class="single-reservation bg-white base-padding">
+                        <div class="single-reservation bg-white base-padding">
                             <div class="single-reservation-expandIcon"> <i class="las la-angle-down"></i> </div>
                             <div class="single-reservation-head">
                                 <div class="single-reservation-flex">
                                     <div class="single-reservation-content">
-                                        <h5 class="single-reservation-content-title"> Dış Özellikler </h5>
-<!--                                        <span class="single-reservation-content-id"> #82443454765 </span>-->
+                                        <h5 class="single-reservation-content-title"> Yat Özellikleri </h5>
+<!--                                        <span class="single-reservation-content-id"> #824409583563 </span>-->
                                     </div>
                                     <div class="single-reservation-btn">
-                                        <a href="javascript:void(0)" class="dash-btn btn-pending"> {{external_villa_features_dict|length}} özellik </a>
+                                        <a href="javascript:void(0)" class="dash-btn btn-pending"> {{yatch_attributes_dict|length}} özellik </a>
                                     </div>
                                 </div>
-
-
-
                             </div>
                             <div class="single-reservation-inner">
 
                                 <div class="single-reservation-item">
                                     <div class="single-reservation-details">
-                                                             {% for feature_category,features in external_villa_features_dict %}
+                                                                {% for key,val in yatch_attributes_dict %}
 <p></p>
 
-                                                                                <div class="single-reservation-details-item col-lg-6 col-md-12">
-                                            <span class="single-reservation-details-subtitle"> {{feature_category}} </span>
-                                                                    {% for feature in features %}
-
-                                            <h5 class="single-reservation-details-title"> {{feature}} </h5>
-                                            {% endfor %}
+                                        <div class="single-reservation-details-item col-lg-6 col-md-12">
+                                            <h5 class="single-reservation-details-subtitle"> {{key}} </h5>
+                                            <span class="single-reservation-details-title"> {{val}} </span>
                                         </div>
 
-                                        {% endfor %}
+                                                                {% endfor %}
 
                                     </div>
                                 </div>
+
+
                             </div>
-
-
                         </div>
-
 
 
                         <div class="single-reservation bg-white base-padding">
@@ -252,34 +243,36 @@
                             <div class="single-reservation-head">
                                 <div class="single-reservation-flex">
                                     <div class="single-reservation-content">
-                                        <h5 class="single-reservation-content-title"> Kiralama Politikaları </h5>
+                                        <h5 class="single-reservation-content-title"> İmkanlar </h5>
 <!--                                        <span class="single-reservation-content-id"> #82443454765 </span>-->
                                     </div>
                                     <div class="single-reservation-btn">
-                                        <a href="javascript:void(0)" class="dash-btn btn-pending"> {{cancellation_policies|length}} özellik </a>
+                                        <a href="javascript:void(0)" class="dash-btn btn-pending"> {{features_dict|length}} imkan </a>
                                     </div>
                                 </div>
-
-
-
                             </div>
                             <div class="single-reservation-inner">
 
                                 <div class="single-reservation-item">
-                                                                        <div class="single-reservation-contact ">
-                                        {% for policy in cancellation_policies %}
-                                        <p></p>
-                                        <div class="single-reservation-details-item col-lg-6 col-md-12">
-                                            <h5 class="single-reservation-details-subtitle"> {{policy.title}} </h5>
-                                            <span class="single-reservation-details-title"> {{policy.explanation}} </span>
+                                    <div class="single-reservation-details">
+                                    {% for feature_category,features in features_dict %}
+<p></p>
+
+                                                                                <div class="single-reservation-details-item col-lg-6 col-md-12">
+                                            <span class="single-reservation-details-subtitle"> {{feature_category}} </span>
+                                                                    {% for feature in features %}
+
+                                            <h5 class="single-reservation-details-title"> {{feature}} </h5>
+                                            {% endfor %}
                                         </div>
+
                                         {% endfor %}
-                                            </div>
 
+                                    </div>
                                 </div>
+
+
                             </div>
-
-
                         </div>
                     </div>
 
@@ -313,11 +306,11 @@
 
 
                                         <h5 class="single-reservation-details-title"> {{price.price}}
-                                                                                 {% if villa.currency == "try" %}
+                                                                                 {% if yatch.currency == "try" %}
                                 ₺
-                                {% elif villa.currency == "usd" %}
+                                {% elif yatch.currency == "usd" %}
                                                                 $
-                                {% elif villa.currency == "eur" %}
+                                {% elif yatch.currency == "eur" %}
                                                                 €
                                 {% endif %}
 
@@ -340,8 +333,16 @@
   </section>
 
                             </div>
+
                         </div>
+
+
                     </div>
+
+                    <div class="grey-bg container-fluid">
+
+</div>
+
 
 
                 </div>
@@ -351,13 +352,14 @@
                         <div class="hotel-details-widget hotel-details-widget-padding widget bg-white radius-10">
                             <div class="details-sidebar">
                                 <div class="details-sidebar-dropdown custom-form">
-                                    <form method="POST" action="{% url 'villa_detail'  villa.id  %}" >
+                                    <form method="POST" action="{% url 'yatch_detail'  yatch.id  %}" >
 
                                         {% csrf_token %}
 
                                         <div class="single-input">
                                             <label name="checkin-date" class="details-sidebar-dropdown-title"> Müsaitlik Görüntüle </label>
-                                                    <input type="text" name="datetimes_home_disabled" id="unique-date-picker" name ="checkin-date" class="form--control picker flatpickr-input" />
+                                                    <input type="text" name="datetimes_home_disabled" id="unique-date-picker-yatch" name ="checkin-date" class="form--control picker flatpickr-input" />
+
                                         </div>
                                         <div class="single-input mt-4">
                                             <input  type="text"  id="name " name="name"class="form--control radius-5" placeholder="Ad" required>
@@ -377,12 +379,13 @@
                                         <div class="checkout-sidebar">
     <div class="checkout-sidebar-contents">
         <ul class="checkout-flex-list list-style-none checkout-border-top pt-3 mt-3">
-            <li class="list"> <span class="regular"> Villa </span> <span class="strong"> {{villa.name}} </span> </li>
+            <li class="list"> <span class="regular"> Yat </span> <span class="strong"> {{yatch.name}} </span> </li>
                                                  {% include 'main/request_summary.html' %}
 
         </ul>
     </div>
 </div>
+
                                         <div class="btn-wrapper mt-4">
                                             <center><button type="submit" class="cmn-btn btn-bg-1 btn-small">Talep Gönder</button></center>
 
@@ -398,24 +401,7 @@
                 </div>
 <div class="container-fluid">
 <hr>
- <div class="row">
-     <iframe
 
-  frameborder="0"
-  scrolling="no"
-  marginheight="0"
-  place="false",
-  marginwidth="0"
-   width="100%"
-  height="320"
-  frameborder="0"
-  style="border:0"
-  src="https://maps.google.com/maps?q={{villa.lat}},{{villa.long}}&hl=tr&z=14&amp;output=embed">
-           allowfullscreen
-
- </iframe>
-<!--  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11880.492291371422!2d12.4922309!3d41.8902102!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x28f1c82e908503c4!2sColosseo!5e0!3m2!1sit!2sit!4v1524815927977" width="100%" height="320" frameborder="0" style="border:0" allowfullscreen></iframe>-->
- </div>
 </div>
 
             </div>

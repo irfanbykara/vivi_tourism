@@ -13,10 +13,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-contents">
-                        <h4 class="breadcrumb-contents-title"> Villalarımız </h4>
+                        <h4 class="breadcrumb-contents-title"> Yatlarımız </h4>
                         <ul class="breadcrumb-contents-list list-style-none">
                             <li class="breadcrumb-contents-list-item"> <a href="{% url 'home' %}"> Anasayfa </a> </li>
-                            <li class="breadcrumb-contents-list-item"> Villalar </li>
+                            <li class="breadcrumb-contents-list-item"> Yatlar </li>
                         </ul>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
 
         <div class="container">
             <div class="booking-form">
-                <form id="main-form" method="GET" action="{% url 'villas' %}">
+                <form id="yatch-main-form" method="POST" action="{% url 'yatchs' %}">
 
                             {% csrf_token %}
     <!-- Hidden input field to store the value of all_villas -->
@@ -36,44 +36,33 @@
                         <div class="row no-margin">
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <span class="form-label">Bölge Seçimi</span>
-                                    {% if selected_zone_id %}
-                        <select class="form-select" id="zone_selection" name="zone_selection" aria-label="Bölge Seçimi">
-                                                        <option class="province-option" value="all_zones">Tüm Bölgeler</option>
+                                    <span class="form-label">Liman Seçimi</span>
+                                                                {% if selected_port %}
+                        <select class="form-select" id="port_selection" name="port_selection" aria-label="Liman Seçimi">
+    <option class="port-option" value="all_ports" {% if selected_port == 'all_ports' %}selected{% endif %}>Tüm Limanlar</option>
 
-                            {% for province in provinces %}
-                            <option class="province-option" value="{{ province.id }}_province"
-                                                    {% if province.id|stringformat:"s"|add:"_province" == selected_zone_id %}
-                                                selected
-                                            {% endif %}
-                                            >
+                            {% for port in all_ports %}
+    <option class="port-option" value="{{ port.id }}" {% if selected_port == port.id %}selected{% endif %}>
 
-                                    {{ province.name }} (Tümü)</option>
-                            {% for zone in province.zone_set.all %}
-                            <option class="zone-option" value="{{ zone.id }}_zone" data-province="{{ province.id }}"
-                                    {% if zone.id|stringformat:"s"|add:"_zone" == selected_zone_id %}
-    selected
-{% endif %}
->
 
-                                    {{ zone.name }}</option>
-                            {% endfor %}
+                                    {{ port.name }} </option>
                             {% endfor %}
                         </select>
                                     {% else %}
-                                    <select class="form-select" id="zone_selection" name="zone_selection" aria-label="Bölge Seçimi">
-                                        <option class="province-option" value="all_zones">Tüm Bölgeler</option>
 
-                            {% for province in provinces %}
+                                                            <select class="form-select" id="port_selection" name="port_selection" aria-label="Liman Seçimi">
+    <option class="port-option" value="all_ports" selected>Tüm Limanlar</option>
 
-                            <option class="province-option" value="{{ province.id }}_province" >{{ province.name }} (Tümü)</option>
-                            {% for zone in province.zone_set.all %}
-                            <option class="zone-option" value="{{ zone.id }}_zone" data-province="{{ province.id }}">{{ zone.name }}</option>
-                            {% endfor %}
+                            {% for port in all_ports %}
+    <option class="port-option" value="{{ port.id }}" >
+
+
+                                    {{ port.name }} </option>
                             {% endfor %}
                         </select>
 
                                     {% endif %}
+
                                 </div>
                             </div>
                             <div class="col-md-7">
@@ -88,7 +77,7 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <span class="form-label">Kişi Sayısı</span>
+                                    <span class="form-label">Kapasite</span>
 
                                     {% if num_people %}
                                         <select class="form-control" id="num_people" name="num_people">
@@ -132,7 +121,7 @@
                 <div class="row no-margin">
                                     <div class="col-md-12">
 
-<form id="filter-form" method="GET" action="{% url 'villas' %}">
+<form id="filter-form-yatch" method="GET" action="{% url 'yatchs' %}">
     {% csrf_token %}
 
     <div class="single-shop-left-inner margin-top-15">
@@ -141,6 +130,7 @@
                 {% for type in all_types %}
                 <div class="col-md-3">
                     <div class="form-check form-switch">
+
                         <input class="form-check-input filter-checkbox" type="checkbox" id="{{type.id}}" name="type" value="{{ type.name }}"
                             {% if type.name in selected_types %} checked {% endif %}>
                         <label class="form-check-label" for="{{type.id}}">{{type.name}}</label>
@@ -165,7 +155,7 @@
                                                                         <div class="form-group">
                                                     <span class="form-label"> </span>
 
-<select id="sort-option" class="form-select btn btn-outline-warning dropdown-toggle" aria-label="Gelişmiş Sıralama">
+<select id="sort-option-yatchs" class="form-select btn btn-outline-warning dropdown-toggle" aria-label="Gelişmiş Sıralama">
     <option value="popularity">Popüler</option>
     <option value="price_asc">Fiyat Artan</option>
     <option value="price_desc">Fiyat Azalan</option>
@@ -182,13 +172,13 @@
                 <div class="shop-grid-contents" >
                     <div class="grid-list-contents">
                         <div class="grid-list-contents-flex">
-                            <p class="grid-list-contents-para"> {{context_dict|length}} sonuç gösteriliyor</p>
+                            <p class="grid-list-contents-para"> {{all_yatchs|length}} sonuç gösteriliyor</p>
                         </div>
                     </div>
                     <div id="tab-grid" class="tab-content-item active mt-4">
                         <div class="row gy-4">
 
-                            {% include 'main/partial_villa_list.html' %}
+                            {% include 'main/partial_yatch_list.html' %}
 
                         </div>
                     </div>

@@ -68,7 +68,16 @@
                 <div class="hotel-view-contents-bottom">
                     <div class="hotel-view-contents-bottom-flex">
                         <div class="hotel-view-contents-bottom-contents">
-                            <h4 class="hotel-view-contents-bottom-title">₺{{ min_price }}<sub>/Gece</sub></h4>
+                            <h4 class="hotel-view-contents-bottom-title">
+                                                                {% if villa.currency == "try" %}
+                                ₺
+                                {% elif villa.currency == "usd" %}
+                                                                $
+                                {% elif villa.currency == "eur" %}
+                                                                €
+                                {% endif %}
+
+                                {{ min_price }}<sub>/Gece</sub></h4>
                             <p class="hotel-view-contents-bottom-para">{{ villa.capacity }} kişi, {{ villa.num_room }} oda, {{ villa.num_bathroom }} banyo</p>
                         </div>
                     </div>

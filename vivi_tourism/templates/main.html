@@ -12,7 +12,7 @@
 <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
 
     <!-- favicon -->
-    <link rel=icon href="favicon.png" sizes="16x16" type="icon/png">
+    <link rel=icon href="{% static 'assets/img/favicon.png' %}" sizes="16x16" type="icon/ico">
     <!-- bootstrap -->
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
     <!-- FontAwesome -->
@@ -111,72 +111,54 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <style>
     .daterangepicker td.off, .daterangepicker  {
-  background-color: #ddd;
+  background-color: #fff;
 }
 </style>
 
-    <script>
-$(function() {
-var newDate = new Date();
-const fruits = [];
-var date_list = JSON.parse("{{date_list|escapejs}}");
-
-for (var i = 0; i < date_list.length; i++) {
-    fruits.push(date_list[i]);
-    //Do something
-    }
-  $('input[name="datetimes"]').daterangepicker({
-
-    timePicker: false,
-    minDate:moment(),
-     isInvalidDate: function(ele) {
-        var currDate = moment(ele._d).format('YY-MM-DD');
-        return fruits.indexOf(currDate) != -1;
-    },
-    startDate: moment().startOf('hour'),
-    endDate: moment().startOf('hour').add(32, 'hour'),
-    singleDatePicker:false,
-    autoApply:true,
-"locale": {
-        "format": "DD.M.Y",
-        "separator": " - ",
-        "daysOfWeek": [
-    "Paz",
-    "Pzt",
-    "Sal",
-    "Çar",
-    "Per",
-    "Cum",
-    "Cmt",
-        ],
-        "monthNames": [
-            "Ocak",
-            "Şubat",
-            "Mart",
-            "Nisan",
-            "Mayıs",
-            "Haziran",
-            "Temmuz",
-            "Ağustos",
-            "Eylül",
-            "Ekim",
-            "Kasım",
-            "Aralık"
-        ],
-        "firstDay": 0
-    }  });
-  alert(input[name="datetimes"]);
-});
-
-</script>
 
 <script>
     $(function() {
+
+
+        moment.updateLocale("tr", {
+                months : [                    'Ocak',
+                    'Şubat',
+                    'Mart',
+                    'Nisan',
+                    'Mayıs',
+                    'Haziran',
+                    'Temmuz',
+                    'Ağustos',
+                    'Eylül',
+                    'Ekim',
+                    'Kasım',
+                    'Aralık',
+],
+            });
         var newDate = new Date();
+
+
         {% if not raw_dates %}
         var startDate = moment().startOf('hour');
+
         var endDate = moment().startOf('hour').add(32, 'hour');
         {% endif %}
+                    moment.updateLocale("tr", {
+                months : [                    'Ocak',
+                    'Şubat',
+                    'Mart',
+                    'Nisan',
+                    'Mayıs',
+                    'Haziran',
+                    'Temmuz',
+                    'Ağustos',
+                    'Eylül',
+                    'Ekim',
+                    'Kasım',
+                    'Aralık',
+],
+            });
+
         $('input[name="datetimes_home"]').daterangepicker({
             timePicker: false,
             minDate: moment(),
@@ -187,7 +169,78 @@ for (var i = 0; i < date_list.length; i++) {
             singleDatePicker: false,
             autoApply: true,
             locale: {
-                format: 'DD.M.Y',
+                format: 'DD MMMM Y',
+                daysOfWeek: [
+                    'Paz',
+                    'Pzt',
+                    'Sal',
+                    'Çar',
+                    'Per',
+                    'Cum',
+                    'Cmt',
+                ],
+                monthNames: [
+                    'Ocak',
+                    'Şubat',
+                    'Mart',
+                    'Nisan',
+                    'Mayıs',
+                    'Haziran',
+                    'Temmuz',
+                    'Ağustos',
+                    'Eylül',
+                    'Ekim',
+                    'Kasım',
+                    'Aralık',
+                ],
+                firstDay: 0
+            }
+
+        });
+
+    });
+</script>
+<script>
+    $(function() {
+        moment.updateLocale("tr", {
+            months : [
+                'Ocak',
+                'Şubat',
+                'Mart',
+                'Nisan',
+                'Mayıs',
+                'Haziran',
+                'Temmuz',
+                'Ağustos',
+                'Eylül',
+                'Ekim',
+                'Kasım',
+                'Aralık',
+            ],
+        });
+
+        var newDate = new Date();
+        {% if not raw_dates %}
+        var startDate = moment().startOf('hour');
+        var endDate = moment().startOf('hour').add(32, 'hour');
+        {% endif %}
+
+        var disabledDates = JSON.parse("{{ date_list|escapejs }}");
+        $('input[name="datetimes_home_disabled"]').daterangepicker({
+            timePicker: false,
+            minDate: moment(),
+            {% if not raw_dates %}
+            startDate: startDate,
+            endDate: endDate,
+            {% endif %}
+            singleDatePicker: false,
+            autoApply: true,
+            isInvalidDate: function(ele) {
+                var currDate = moment(ele._d).format('YY-MM-DD');
+                return disabledDates.indexOf(currDate) != -1;
+            },
+            locale: {
+                format: 'DD MMMM Y',
                 daysOfWeek: [
                     'Paz',
                     'Pzt',
@@ -349,6 +402,65 @@ for (var i = 0; i < date_list.length; i++) {
         });
     });
 </script>
+    <script>
+    $(document).ready(function(){
+        $('#filter-form-tours').submit(function(e){
+            e.preventDefault(); // Prevent default form submission
+
+            var selectedTypes = [];
+            $('.filter-checkbox:checked').each(function(){
+                selectedTypes.push($(this).val());
+            });
+
+
+            // Get the value of all_tours
+            var allTours = $('input[name="all_tours"]').val();
+            // Generate query parameters
+            var queryParams = $.param({
+                type: selectedTypes,
+                all_tours: allTours,
+            });
+
+            // Redirect to the URL with query parameters
+            window.location.href = "{% url 'tours' %}?" + queryParams;
+        });
+    });
+</script>
+    <script>
+    $(document).ready(function(){
+        $('#filter-form-yatch').submit(function(e){
+            e.preventDefault(); // Prevent default form submission
+
+            var selectedTypes = [];
+            $('.filter-checkbox:checked').each(function(){
+                selectedTypes.push($(this).val());
+            });
+
+            // Get the value of num_people
+            var numPeople = $('#num_people').val();
+            var dateTimesHome = $('#checkin-date').val();
+
+            // Get the value of selected_zone
+            var selectedPort = $('#port_selection').val();
+
+            // Get the value of all_tours
+            var allYatchs = $('input[name="all_yatchs"]').val();
+            // Generate query parameters
+            var queryParams = $.param({
+                type: selectedTypes,
+                all_yatchs: allYatchs,
+                selected_port:selectedPort,
+                datetimes_home:dateTimesHome,
+                num_people:numPeople,
+
+            });
+
+            // Redirect to the URL with query parameters
+            window.location.href = "{% url 'yatchs' %}?" + queryParams;
+        });
+    });
+</script>
+
 <script>
 
 // Get the specific element with a unique ID
@@ -394,6 +506,169 @@ console.log('Request successful:', xhr.responseText);
     xhr.send(JSON.stringify({ value: value,villa_id:{{villa.id}} }));
 
 };
+</script>
+<script>
+
+// Get the specific element with a unique ID
+var element = document.getElementById("unique-date-picker-yatch");
+
+// Attach onchange event listener to the specific element
+element.onchange = function() {
+    // Get the value of the specific element
+    var value = this.value;
+    // Create a new XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
+
+    // Prepare the request
+    xhr.open('POST', "{% url 'yatch_request' %}");
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');  // Add CSRF token if needed
+
+    // Define what happens on successful data submission
+    xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+            // Request was successful, do something with the response
+                            var requestSummary = document.getElementById('request-summary');
+                            var jsonResponse = JSON.parse(xhr.responseText);
+
+                            // Access the html property of the parsed JSON object
+                            var htmlContent = jsonResponse.html;
+
+                            requestSummary.innerHTML =htmlContent ;
+
+console.log('Request successful:', xhr.responseText);
+        } else {
+            // Request failed
+            console.error('Request failed:', xhr.status);
+        }
+    };
+
+    // Define what happens in case of an error
+    xhr.onerror = function () {
+        console.error('Request failed: Network error');
+    };
+
+    // Send the request with the value data
+    xhr.send(JSON.stringify({ value: value,yatch_id:{{yatch.id}} }));
+
+};
+</script>
+
+<script>
+    document.getElementById('sort-option-tours').addEventListener('change', function() {
+        var tourIds = [
+        {% for tour in tours %}
+            {{ tour.id }},
+
+        {% endfor %}
+    ];
+            var prices = [
+        {% for tour in tours%}
+            {{ tour.default_price }},
+
+        {% endfor %}
+    ];
+
+
+
+        var selectedOption = this.value;
+        var url = "{% url 'sort_tours' %}?sort_option=" + selectedOption;
+                // Get the current URL and its search parameters
+        var queryParams = new URLSearchParams(window.location.search);
+
+        var default_price="true";
+        // Check if the 'default_price' parameter exists and its value is 'true'
+
+        // Encode villaIds as a comma-separated string
+        var tourIdsString = tourIds.join(',');
+        url += "&tour_ids=" + encodeURIComponent(tourIdsString);
+        url += "&default_price=" + default_price;
+        url +="&prices=" + encodeURIComponent(prices);
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Assuming your villa list is rendered inside a div with id="villa-list"
+                var tourListContainer = document.getElementById('tour-list');
+
+                tourListContainer.innerHTML = data.html;
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+</script>
+
+<script>
+    document.getElementById('sort-option-yatchs').addEventListener('change', function() {
+        var yatchIds = [
+        {% for yatch, min_price in context_dict %}
+            {{ yatch.id }},
+
+        {% endfor %}
+    ];
+            var prices = [
+        {% for yatch, min_price in context_dict %}
+            {{ min_price }},
+        {% endfor %}
+    ];
+
+
+
+        var selectedOption = this.value;
+        var url = "{% url 'sort_yatchs' %}?sort_option=" + selectedOption;
+                // Get the current URL and its search parameters
+        var queryParams = new URLSearchParams(window.location.search);
+
+        var default_price;
+        // Check if the 'default_price' parameter exists and its value is 'true'
+        if (queryParams.has('default_price') && queryParams.get('default_price') === 'true') {
+            // 'default_price' parameter exists and its value is 'true'
+            default_price = "true";
+            // Do something based on this condition
+        }
+        else{
+        default_price="false";
+        }
+
+        // Encode villaIds as a comma-separated string
+        var yatchIdsString = yatchIds.join(',');
+        url += "&yatch_ids=" + encodeURIComponent(yatchIdsString);
+        url += "&default_price=" + default_price;
+        url +="&prices=" + encodeURIComponent(prices);
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Assuming your villa list is rendered inside a div with id="yatch-list"
+                var yatchListContainer = document.getElementById('yatch-list');
+
+                yatchListContainer.innerHTML = data.html;
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+</script>
+<script>
+  $('#imageModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var carousel = $(this).find('.carousel');
+    carousel.carousel({
+      interval: false
+    });
+  });
+</script>
+<script>
+  $('#imageModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var carousel = $(this).find('.carousel');
+    carousel.carousel({
+      interval: true
+    });
+  });
 </script>
 
 </body>

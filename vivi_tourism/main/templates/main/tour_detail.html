@@ -1,0 +1,220 @@
+
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<section class="hotel-details-area section-bg-2 pat-100 pab-100">
+    <div class="breadcrumb-area breadcrumb-padding">
+
+        <div class="container custom-container-one">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-contents">
+                        <h4 class="breadcrumb-contents-title"> Tur Detayları </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="container">
+
+            <div class="row g-4">
+                <div class="col-xl-8 col-lg-7">
+                    <div class="details-left-wrapper">
+                        <div class="details-contents bg-white radius-10">
+                            <div class="details-contents-header">
+                                <div class="details-contents-header-flex">
+
+                                </div>
+                            </div>
+
+                            <div class="hotel-view-contents">
+                                <div class="hotel-view-contents-header">
+<div id="CarouselWithControls" class="carousel slide " data-ride="carousel">
+  <div class="carousel-inner">
+    {% for item in yatch_images %}
+      <div class="carousel-item {% if forloop.first %} active {% endif %}" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="{{ forloop.counter }}">
+        <img src="{{ item.image.url }}" class="d-block w-100">
+      </div>
+    {% endfor %}
+    <a class="carousel-control-prev" href="#CarouselWithControls" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#CarouselWithControls" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div id="carouselModal" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            {% for item in yatch_images %}
+              <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                <img src="{{ item.image.url }}" class="d-block w-100">
+              </div>
+            {% endfor %}
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselModal" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselModal" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                                    <h3 class="hotel-view-contents-title"> {{tour.name}} </h3>
+                                    <div class="hotel-view-contents-location mt-2">
+                                        <span class="hotel-view-contents-location-icon"> <i class="las la-map-marker-alt"></i> </span>
+                                        <span class="hotel-view-contents-location-para"> {{tour.address}}  </span>
+                                    </div>
+                                </div>
+                                <div class="hotel-view-contents-middle">
+                                    <div class="hotel-view-contents-flex">
+                                        {% if tour.has_wifi %}
+                                        <div class="hotel-view-contents-icon d-flex gap-1">
+                                            <span> <i class="las la-wifi" title="Wifi"></i> </span>
+                                            <p class="hotel-view-contents-icon-title flex-fill"> Wifi </p>
+                                        </div>
+                                        {% endif %}
+                                        {% if tour.has_lunch %}
+
+                                        <div class="hotel-view-contents-icon d-flex gap-1">
+                                            <span> <i class="las la-utensils"></i> </span>
+                                            <p class="hotel-view-contents-icon-title flex-fill"> Yemek </p>
+                                        </div>
+                                        {% endif %}
+                                        {% if tour.has_guide %}
+
+                                        <div class="hotel-view-contents-icon d-flex gap-1">
+                                            <span> <i class="las la-address-book"></i> </span>
+                                            <p class="hotel-view-contents-icon-title flex-fill"> Rehber </p>
+                                        </div>
+                                        {% endif %}
+                                            {% if tour.has_shuttle %}
+
+                                        <div class="hotel-view-contents-icon d-flex gap-1">
+                                            <span> <i class="las la-shuttle-van"></i> </span>
+                                            <p class="hotel-view-contents-icon-title flex-fill"> Servis </p>
+                                        </div>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+
+                                <div class="hotel-view-contents-bottom">
+                                    <div class="hotel-view-contents-bottom-flex">
+                                        <div class="hotel-view-contents-bottom-contents">
+                                            <h4 class="hotel-view-contents-bottom-title">
+                                                                                {% if tour.currency == "try" %}
+                                ₺
+                                {% elif tour.currency == "usd" %}
+                                                                $
+                                {% elif tour.currency == "eur" %}
+                                                                €
+                                {% endif %}
+                                {{ tour.default_price }}<sub>'den başlayan</sub></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="details-contents-tab">
+                                <ul class="tabs details-tab details-tab-border">
+                                    <li class="active" data-tab="about"> Tur Hakkında </li>
+                                </ul>
+
+                                <div id="about" class="tab-content-item active">
+                                    <div class="about-tab-contents">
+<!--                                        <p class="about-tab-contents-para"> {{ villa.explanation|linebreaks }} </p>-->
+                                        <p class="about-tab-contents-para"> {{ tour.explanation|safe }} </p>
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grey-bg container-fluid">
+  <section id="minimal-statistics">
+    <div class="row">
+      <div class="col-12 mt-3 mb-1">
+        <h4 class="text-uppercase">Ücret Takvimi</h4>
+      </div>
+    </div>
+    <div class="row">
+        {% for price in price_intervals %}
+
+      <div class="col-xl-6 col-sm-6 col-12">
+        <div class="card btn-outline-warning rounded-lg" style="border-color: rgba(255, 193, 7, 0.2);border-radius: 20px;">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="align-self-center">
+                  <i class="icon-pencil primary font-large-2 float-left"></i>
+                </div>
+                  <div class="single-reservation-details-item">
+{% load turkish_month_name %}
+
+<span class="single-reservation-details-subtitle">
+    {{price.start_date.day}} {{ price.start_date|turkish_month_name }} {{price.start_date.year}} - {{price.end_date.day}} {{ price.end_date|turkish_month_name }} arası {% if price.min_nights %}
+</span>
+                                            (Min. {{price.min_nights}} gece) {% endif %}
+
+
+                                        <h5 class="single-reservation-details-title"> {{price.price}}
+                                            {% if tour.currency == "try" %}
+                                ₺
+                                {% elif tour.currency == "usd" %}
+                                                                $
+                                {% elif tour.currency == "eur" %}
+                                                                €
+                                {% endif %}
+ </h5>
+                                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <br>
+      </div>
+
+        {% endfor %}
+    </div>
+
+  </section>
+
+</div>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+    </section>
+
+
+{% endblock %}

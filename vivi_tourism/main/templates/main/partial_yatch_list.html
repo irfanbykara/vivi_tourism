@@ -1,0 +1,89 @@
+
+<div id="yatch-list" class="row">
+    {% for yatch, price in context_dict %}
+    <div class="col-md-4 mb-4">
+        <div class="hotel-view bg-white radius-20">
+            <a href="{% url 'yatch_detail' yatch.id %}?price={{price}}" class="hotel-view-thumb hotel-view-grid-thumb bg-image">
+                <img src="{{ yatch.avatar.url }}" alt="{{ yatch.name }}">
+            </a>
+            <div class="hotel-view-contents">
+                <div class="hotel-view-contents-header">
+<h3 class="hotel-view-contents-title">
+    {% if yatch.is_popular %}
+        <span class="star-icon" style="background-color: orange; padding: 5px; border-radius: 50%;"><i class="las la-star"></i></span>
+    {% endif %}
+        <a href="{% url 'yatch_detail' yatch.id %}">{{ yatch.name }}</a>
+
+</h3>
+                    <div class="hotel-view-contents-location mt-2">
+                        <span class="hotel-view-contents-location-icon"><i class="las la-map-marker-alt"></i></span>
+                        <span class="hotel-view-contents-location-para">{{ yatch.yatch_port }}</span>
+                    </div>
+                </div>
+<!--                <div class="hotel-view-contents-middle">-->
+<!--                    <div class="hotel-view-contents-flex">-->
+<!--                        {% if villa.has_parking %}-->
+<!--                        <div class="hotel-view-contents-icon d-flex gap-1">-->
+<!--                            <span><i class="las la-parking"></i></span>-->
+<!--                            <p class="hotel-view-contents-icon-title flex-fill"></p>-->
+<!--                        </div>-->
+<!--                        {% endif %}-->
+<!--                                        {% if villa.has_wifi %}-->
+
+<!--                                        <div class="hotel-view-contents-icon d-flex gap-1">-->
+<!--                                            <span> <i class="las la-wifi"></i> </span>-->
+<!--                                            <p class="hotel-view-contents-icon-title flex-fill"> </p>-->
+<!--                                        </div>-->
+<!--                                        {% endif %}-->
+<!--                                        {% if villa.has_breakfast %}-->
+
+<!--                                        <div class="hotel-view-contents-icon d-flex gap-1">-->
+<!--                                            <span> <i class="las la-coffee"></i> </span>-->
+<!--                                            <p class="hotel-view-contents-icon-title flex-fill">  </p>-->
+<!--                                        </div>-->
+<!--                                        {% endif %}-->
+<!--                                        {% if villa.has_cleaning_service %}-->
+
+<!--                                        <div class="hotel-view-contents-icon d-flex gap-1">-->
+<!--                                            <span> <i class="las la-quidditch"></i> </span>-->
+<!--                                            <p class="hotel-view-contents-icon-title flex-fill">  </p>-->
+<!--                                        </div>-->
+<!--                                        {% endif %}-->
+<!--                                {% if villa.has_pool %}-->
+
+<!--                                        <div class="hotel-view-contents-icon d-flex gap-1">-->
+<!--                                            <span> <i class="las la-swimming-pool"></i> </span>-->
+<!--                                            <p class="hotel-view-contents-icon-title flex-fill">  </p>-->
+<!--                                        </div>-->
+<!--                                        {% endif %}-->
+<!--                                        {% if villa.has_reception %}-->
+
+<!--                                        <div class="hotel-view-contents-icon d-flex gap-1">-->
+<!--                                            <span> <i class="las la-receipt"></i> </span>-->
+<!--                                            <p class="hotel-view-contents-icon-title flex-fill">  </p>-->
+<!--                                        </div>-->
+<!--                                        {% endif %}-->
+<!--                    </div>-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+                <div class="hotel-view-contents-bottom">
+                    <div class="hotel-view-contents-bottom-flex">
+                        <div class="hotel-view-contents-bottom-contents">
+                            <h4 class="hotel-view-contents-bottom-title">
+                                                                {% if yatch.currency == "try" %}
+                                ₺
+                                {% elif yatch.currency == "usd" %}
+                                                                $
+                                {% elif yatch.currency == "eur" %}
+                                                                €
+                                {% endif %}
+
+                                {{ price }}<sub>'dan başlayan</sub></h4>
+                            <p class="hotel-view-contents-bottom-para">{{ yatch.capacity }} kişi, {{ yatch.num_rooms }} kabin, {{ villa.num_bathroom }} banyo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
