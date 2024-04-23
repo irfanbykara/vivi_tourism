@@ -39,10 +39,15 @@ services:
   proxy:
     build:
       context: ./proxy
-    privileged: true
     restart: always
     depends_on:
       - vivi_tourism
     ports:
       - 80:8000
       - 443:443
+    volumes:
+      - static-data:/vol/static
+
+volumes:
+  postgres-data:
+  static-data:

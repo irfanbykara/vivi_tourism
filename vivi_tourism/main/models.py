@@ -105,7 +105,7 @@ class Tour(models.Model):
     has_wifi = models.BooleanField(null=True,default=False)
     has_lunch = models.BooleanField(null=True,default=False)
     has_shuttle  = models.BooleanField(null=True,default=False)
-    currency = models.CharField( max_length=3, null=True,default="try")
+    currency = models.CharField( max_length=3,blank=True, null=True,default="try")
 
     def __str__(self):
         return self.name
@@ -158,7 +158,7 @@ class Yatch(models.Model):
     hall_height = models.CharField(max_length=30, null=True, blank=True)  # Allow blank values
     width = models.CharField(max_length=30, null=True, blank=True)  # Allow blank values
     water_draft = models.CharField(max_length=30, null=True, blank=True)  # Allow blank values
-    currency = models.CharField(max_length=3, null=True, default="try")
+    currency = models.CharField(max_length=3, blank=True,null=True, default="try")
 
 
     def __str__(self):
@@ -195,7 +195,7 @@ class Villa( models.Model ):
     has_cleaning_service = models.BooleanField(null=True,default=False)
     has_pool = models.BooleanField(null=True,default=False)
     has_reception = models.BooleanField(null=True,default=False)
-    currency = models.CharField(max_length=3, null=True, default="try")
+    currency = models.CharField(max_length=3, blank=True,null=True, default="try")
 
     # has_private = models.BooleanField(null=True,default=False)
 

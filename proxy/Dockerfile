@@ -1,4 +1,3 @@
-FROM nginxinc/nginx-unprivileged:1-alpine
 LABEL maintainer="londonappdeveloper.com"
 
 COPY ./default.conf.tpl /etc/nginx/default.conf.tpl
@@ -45,3 +44,5 @@ RUN mkdir -p /vol/static && \
 VOLUME /vol/static
 
 USER root
+
+CMD ["/run.sh"]
