@@ -7,12 +7,14 @@
       <change beforePath="$PROJECT_DIR$/vivi_tourism/docker-compose-deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/vivi_tourism/docker-compose-deploy.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vivi_tourism/proxy/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/vivi_tourism/proxy/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vivi_tourism/proxy/default.conf.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/vivi_tourism/proxy/default.conf.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vivi_tourism/scripts/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/vivi_tourism/scripts/run.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/migrations/0001_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/migrations/0002_alter_yatch_boarding_passanger_capacity_and_more.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/migrations/0003_yatchreservation.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/migrations/0004_yatchpriceinterval_min_nights.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/migrations/0005_cancellationpolicy_villafeaturecategories_and_more.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/migrations/0006_rename_yatch_feature_categories_villafeature_villa_feature_categories.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,49 +25,34 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vivi_tourism/docker-compose-deploy.yml">
+        <entry file="file://$PROJECT_DIR$/vivi_tourism/proxy/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="53" lean-forward="true" selection-end-line="53" />
+            <state relative-caret-position="697">
+              <caret line="41" column="15" selection-start-line="41" selection-start-column="15" selection-end-line="41" selection-end-column="15" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/vivi_tourism/settings.py">
+        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/migrations/0001_initial.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="119" column="55" lean-forward="true" selection-start-line="119" selection-start-column="55" selection-end-line="119" selection-end-column="55" />
+            <state relative-caret-position="1904">
+              <caret line="114" column="20" selection-start-line="114" selection-start-column="20" selection-end-line="114" selection-end-column="20" />
               <folding>
-                <element signature="e#311#335#0" expanded="true" />
+                <element signature="e#47#69#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vivi_tourism/proxy/Dockerfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/vivi_tourism/wsgi.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/vivi_tourism/Dockerfile">
+        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="31" column="14" lean-forward="true" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
+            <state relative-caret-position="73">
+              <caret line="180" column="50" lean-forward="true" selection-start-line="180" selection-start-column="50" selection-end-line="180" selection-end-column="50" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -74,16 +61,37 @@
         <entry file="file://$PROJECT_DIR$/vivi_tourism/scripts/run.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
-              <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vivi_tourism/proxy/default.conf.tpl">
+        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+            <state relative-caret-position="969">
+              <caret line="78" column="19" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#45#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vivi_tourism/docker-compose.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vivi_tourism/docker-compose-deploy.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="328">
+              <caret line="53" selection-start-line="53" selection-end-line="53" />
             </state>
           </provider>
         </entry>
@@ -92,7 +100,19 @@
         <entry file="file://$PROJECT_DIR$/vivi_tourism/proxy/uwsgi_params">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
-              <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+              <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/management/commands/wait_for_db.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="8" column="23" selection-end-line="21" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -100,8 +120,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vivi_tourism/proxy/run.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="102">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -118,12 +138,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>arası</find>
-      <find>images</find>
-      <find>def yatch_deta</find>
-      <find>sing</find>
-      <find>single-reservation-deta</find>
-      <find>imkanlar</find>
       <find>Services</find>
       <find>Yatch</find>
       <find>min</find>
@@ -148,6 +162,12 @@
       <find>vil</find>
       <find>volumes</find>
       <find>main_yatch</find>
+      <find>scripts</find>
+      <find>wait_for_db</find>
+      <find>Villa</find>
+      <find>currency</find>
+      <find>default</find>
+      <find>try</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -156,7 +176,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/migrations/0001_initial.py" />
         <option value="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/admin/static/admin/css/changelists.css" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/about.html" />
         <option value="$PROJECT_DIR$/venv/Lib/site-packages/pandas/_libs/tslibs/timezones.pyx" />
@@ -196,7 +215,6 @@
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/partial_villa_list.html" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/partial_yatch_list.html" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/admin.py" />
-        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/models.py" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/static/static/assets/css/style.css" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/yatch_detail.html" />
         <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/villa_detail.html" />
@@ -207,6 +225,8 @@
         <option value="$PROJECT_DIR$/vivi_tourism/docker-compose-deploy.yml" />
         <option value="$PROJECT_DIR$/vivi_tourism/proxy/Dockerfile" />
         <option value="$PROJECT_DIR$/vivi_tourism/proxy/default.conf.tpl" />
+        <option value="$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/models.py" />
+        <option value="$PROJECT_DIR$/vivi_tourism/scripts/run.sh" />
       </list>
     </option>
   </component>
@@ -238,18 +258,6 @@
               <item name="vivi_tourism_app" type="b2602c69:ProjectViewProjectNode" />
               <item name="vivi_tourism_app" type="462c0819:PsiDirectoryNode" />
               <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
-              <item name="proxy" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vivi_tourism_app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vivi_tourism_app" type="462c0819:PsiDirectoryNode" />
-              <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vivi_tourism_app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vivi_tourism_app" type="462c0819:PsiDirectoryNode" />
-              <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
               <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -257,7 +265,15 @@
               <item name="vivi_tourism_app" type="462c0819:PsiDirectoryNode" />
               <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
               <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vivi_tourism_app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vivi_tourism_app" type="462c0819:PsiDirectoryNode" />
               <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
+              <item name="vivi_tourism" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -337,11 +353,19 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="830" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49814814" visible="true" weight="0.25561428" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49814814" visible="true" weight="0.25561428" />
       <window_info id="Structure" order="1" sideWeight="0.50185186" side_tool="true" weight="0.24966975" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -350,9 +374,9 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32956153" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.31616595" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32904148" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32904148" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.31616595" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32956153" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -391,57 +415,7 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templatetags/turkish_month_name.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/cancellation_policy.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="53" selection-start-line="29" selection-start-column="53" selection-end-line="29" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/templates/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="78" column="68" selection-start-line="78" selection-start-column="49" selection-end-line="78" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/privacy_agreement.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="69" column="14" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/coming_soon.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vivi_tourism/data/web/media/215680.jpg" />
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/migrations/0001_initial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="160" column="27" selection-start-line="160" selection-start-column="23" selection-end-line="160" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/apps.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -623,16 +597,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="63" column="28" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/templates/main/partial_tour_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -651,16 +615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="22" column="62" lean-forward="true" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="824" column="13" selection-start-line="821" selection-end-line="827" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -706,13 +660,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/migrations/0002_alter_yatch_boarding_passanger_capacity_and_more.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="63" column="20" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/migrations/0002_alter_yatch_boarding_passanger_capacity_and_more.py" />
     <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/vivi_tourism/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="334">
@@ -723,34 +671,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/proxy/run.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/scripts/run.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/proxy/default.conf.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/proxy/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/vivi_tourism/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -758,24 +678,108 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/proxy/default.conf.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="14" lean-forward="true" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/data/web/media/Karşıdan.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/data/web/media/villa-yeryuzu-1-942.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/data/web/media/Yemek_Odası.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/proxy/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" column="15" selection-start-line="41" selection-start-column="15" selection-end-line="41" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1904">
+          <caret line="114" column="20" selection-start-line="114" selection-start-column="20" selection-end-line="114" selection-end-column="20" />
+          <folding>
+            <element signature="e#47#69#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/scripts/run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="78" column="19" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/vivi_tourism/proxy/uwsgi_params">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/management/commands/wait_for_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="23" selection-end-line="21" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/proxy/run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vivi_tourism/docker-compose-deploy.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="328">
-          <caret line="53" lean-forward="true" selection-end-line="53" />
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vivi_tourism/Dockerfile">
+    <entry file="file://$PROJECT_DIR$/vivi_tourism/vivi_tourism/main/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="31" column="14" lean-forward="true" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
+        <state relative-caret-position="73">
+          <caret line="180" column="50" lean-forward="true" selection-start-line="180" selection-start-column="50" selection-end-line="180" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
